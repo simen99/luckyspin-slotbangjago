@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Luckyspin-slotbangjago</title>
+    <base target="_top">
+    <!-- ✅ OneSignal Script -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
+        });
+        OneSignal.showSlidedownPrompt();
+      });
+    </script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f2f2f2;
+        margin-top: 40px;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+      input[type="text"] {
+        padding: 10px;
+        width: 250px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: box-shadow 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        box-shadow: 0 0 6px #28a745;
+        border-color: #28a745;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      button:active {
+        transform: scale(0.96);
+        background-color: #1e7e34;
+      }
+
+      #loading-spinner {
+        display: none;
+        justify-content: center;
+        margin: 20px;
+      }
+
+      .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #e60000;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .result-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.result-table th {
+  background-color: #cc0000;
+  color: white;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.result-table td {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  color: #333;
+}
+
+.copy-btn {
+  display: inline-block;
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-left: 8px;
+  vertical-align: middle;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+  background-color: #cc4444;
+  transform: scale(1.05);
+}
+
+      @media (max-width: 600px) {
+        input[type="text"] {
+          width: 80%;
+        }
+        .result-table th, .result-table td {
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <img src="https://i.ibb.co/8LjX3z3Y/logo-sbj-png.png" alt="Logo Slot Bangjago" style="height: 80px; margin-bottom: 10px;" />
+    <h2>Cari kode luckyspin anda disini</h2>
+
+    <form id="search-form">
+  <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
+  <button type="submit">Cari</button>
+  <div id="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+</form>
+
+    <div id="result"></div>
+
+    <script>
+      document.getElementById("search-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const input = document.getElementById("searchtext").value.trim();
+        const spinner = document.getElementById("loading-spinner");
+        const result = document.getElementById("result");
+
+        result.innerHTML = "";
+        spinner.style.display = "flex";
+
+        google.script.run.withSuccessHandler(function (response) {
+          spinner.style.display = "none";
+          if (response && response.length > 0) {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
+
+            response.forEach(row => {
+              table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
+            });
+
+            table += "</tbody></table>";
+            table += `<div style="margin-top: 20px;"><a href="https://maxwinputar.com/lucky-wheel-slotbangjago/" target="_blank"><button style="background-color:#28a745;color:white;padding:10px 20px;border:none;border-radius:6px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px;transition:background-color 0.3s ease, transform 0.2s ease;" onmouseover="this.style.backgroundColor='#218838';" onmouseout="this.style.backgroundColor='#28a745';" onmousedown="this.style.transform='scale(0.96)';" onmouseup="this.style.transform='scale(1)';">KLIK INI UNTUK MEMUTAR KODE</button></a></div>`;
+            result.innerHTML = table;
+          } else {
+            result.innerHTML = `<div style="color:red;font-weight:bold;margin-top:10px;">❌ Pastikan Userid anda sudah benar.</div><div style="margin-top: 15px;"><a href="https://klikblg.com/wa-sbj" target="_blank"><button style="background-color:#007bff;color:white;padding:10px 18px;border:none;border-radius:6px;font-size:14px;font-weight:bold;cursor:pointer;transition:background-color 0.3s ease, transform 0.2s ease;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';" onmousedown="this.style.transform='scale(0.95)';" onmouseup="this.style.transform='scale(1)';">KLIK INI UNTUK BANTUAN</button></a></div>`;
+          }
+        }).processForm({ searchtext: input });
+      });
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert("Kode berhasil disalin!");
+        });
+      }
+    </script>
+
+    <!-- Start of LiveChat (www.livechat.com) code -->
+    <script>
+      window.__lc = window.__lc || {};
+      window.__lc.license = 11798511;
+      window.__lc.integration_name = "manual_channels";
+      window.__lc.product_name = "livechat";
+      ;(function(n,t,c){
+        function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}
+        var e={_q:[],_h:null,_v:"2.0",
+          on:function(){i(["on",c.call(arguments)])},
+          once:function(){i(["once",c.call(arguments)])},
+          off:function(){i(["off",c.call(arguments)])},
+          get:function(){
+            if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");
+            return i(["get",c.call(arguments)])
+          },
+          call:function(){i(["call",c.call(arguments)])},
+          init:function(){
+            var n=t.createElement("script");
+            n.async=!0;
+            n.type="text/javascript";
+            n.src="https://cdn.livechatinc.com/tracking.js";
+            t.head.appendChild(n)
+          }
+        };
+        !n.__lc.asyncInit && e.init();
+        n.LiveChatWidget=n.LiveChatWidget||e
+      }(window,document,[].slice))
+    </script>
+    <noscript>
+      <a href="https://www.livechat.com/chat-with/11798511/" rel="nofollow">Chat with us</a>, powered by 
+      <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+    </noscript>
+    <!-- End of LiveChat code -->
+
+<!-- Tombol GIF Telegram -->
+<a href="https://klikblg.com/tele-sbj" target="_blank" style="position: fixed; bottom: 90px; left: 20px; z-index: 9999;">
+  <img src="https://i.ibb.co/qFNF754C/s-Wrh-ESzm4-Oh-UZql-Jg-Mvcz-c-Vr-Hw.gif" alt="Telegram GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
+</a>
+
+<!-- Tombol GIF WhatsApp -->
+<a href="https://klikblg.com/wa-sbj" target="_blank" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999;">
+  <img src="https://i.ibb.co/mrvRcXRH/Wqtl0ij-Kix.gif" alt="WhatsApp GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
+</a>
+
+  </body>
+</html>
