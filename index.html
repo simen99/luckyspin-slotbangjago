@@ -39,6 +39,18 @@
         font-size: 16px;
         transition: box-shadow 0.3s ease;
       }
+      .reminder-text {
+    color: #cc0000;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 16px;
+    animation: pulseText 1.5s ease-in-out infinite;
+  }
+  @keyframes pulseText {
+    0%   { opacity: 1; transform: scale(1); }
+    50%  { opacity: 0.6; transform: scale(1.04); }
+    100% { opacity: 1; transform: scale(1); }
+}  /* <-- tambahkan ini */
       input[type="text"]:focus {
         outline: none;
         box-shadow: 0 0 6px #28a745;
@@ -247,6 +259,7 @@
           table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
         });
         table += `</tbody></table>`;
+        table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
         table += `<div style="margin-top: 10px;">
           <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
             <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
