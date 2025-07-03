@@ -3,25 +3,15 @@
   <head>
     <title>Luckyspin-slotbangjago</title>
     <base target="_top">
-    <!-- ✅ OneSignal Script -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(async function(OneSignal) {
-  await OneSignal.init({
-  appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
-  promptOptions: {
-    slidedown: {
-      enabled: true,
-      autoPrompt: true,
-      actionMessage: "Ingin mendapatkan notifikasi saat ada update LuckySpin?",
-      acceptButtonText: "Izinkan",
-      cancelButtonText: "Nanti saja"
-    }
-  },
-  pageLanguage: "id"
-});
-    </script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
+    });
+  });
+</script>
     <style>
       body {
         font-family: Arial, sans-serif;
