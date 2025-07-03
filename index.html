@@ -9,17 +9,17 @@
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(async function(OneSignal) {
   await OneSignal.init({
-    appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
-    promptOptions: {
-      slidedown: {
-        enabled: true,
-        autoPrompt: true,
-        actionMessage: "Ingin mendapatkan notifikasi saat ada update LuckySpin?",
-        acceptButtonText: "Izinkan",
-        cancelButtonText: "Nanti saja"
-      }
+  appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
+  promptOptions: {
+    slidedown: {
+      enabled: true,
+      autoPrompt: true,
+      actionMessage: "Ingin mendapatkan notifikasi saat ada update LuckySpin?",
+      acceptButtonText: "Izinkan",
+      cancelButtonText: "Nanti saja"
     }
-  });
+  },
+  pageLanguage: "id"
 });
     </script>
     <style>
