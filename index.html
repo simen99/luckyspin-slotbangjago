@@ -221,7 +221,7 @@ document.getElementById("search-form").addEventListener("submit", function (e) {
   result.innerHTML = "";
   spinner.style.display = "flex";
 
-  fetch(`https://script.google.com/macros/s/AKfycbxqCplgRFUUbsyFPUaDqixlsc83pJyZOr_SoH6A1ugO8HNhfKvtvZHN7oUzkibYYnnfPw/exec=${encodeURIComponent(input)}`)
+  fetch(`https://script.google.com/macros/s/AKfycbxqCplgRFUUbsyFPUaDqixlsc83pJyZOr_SoH6A1ugO8HNhfKvtvZHN7oUzkibYYnnfPw/exec?searchtext=${encodeURIComponent(input)}`)
   .then(response => response.json())
   .then(response => {
     spinner.style.display = "none";
