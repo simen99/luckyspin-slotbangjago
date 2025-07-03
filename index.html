@@ -245,22 +245,61 @@ document.getElementById("search-form").addEventListener("submit", function (e) {
     result.innerHTML = `<div style="color:red;">❌ Gagal terhubung ke server.</div>`;
   });
 
-// ✅ Fungsi copy kode
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Kode berhasil disalin!");
-      });
-    }
+<script>
+  // 🔁 Event submit form
+  document.getElementById("search-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const input = document.getElementById("searchtext").value.trim();
+    const spinner = document.getElementById("loading-spinner");
+    const result = document.getElementById("result");
 
-    // ✅ AUTO isi input dari URL dan langsung cari
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const param = urlParams.get('searchtext');
-      if (param) {
-        document.getElementById("searchtext").value = param;
-        document.getElementById("search-form").dispatchEvent(new Event("submit"));
-      }
+    result.innerHTML = "";
+    spinner.style.display = "flex";
+
+    fetch(`https://script.google.com/macros/s/AKfycby6KadR_tDbNUMjdCvUh814fWVTAKAS3vrDAtdofFW7V2iDHig1MoGI04Ndzmws7Ms/exec?searchtext=${encodeURIComponent(input)}`)
+      .then(response => response.json())
+      .then(response => {
+        spinner.style.display = "none";
+        if (response && response.length > 0) {
+          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+          let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
+
+          response.forEach(row => {
+            table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
+          });
+
+          table += "</tbody></table>";
+          table += `<div style="margin-top: 20px;"><a href="https://maxwinputar.com/lucky-wheel-slotbangjago/" target="_blank"><button style="background-color:#28a745;color:white;padding:10px 20px;border:none;border-radius:6px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px;">KLIK INI UNTUK MEMUTAR KODE</button></a></div>`;
+          result.innerHTML = table;
+        } else {
+          result.innerHTML = `<div style="color:red;font-weight:bold;margin-top:10px;">❌ Pastikan Userid anda sudah benar.</div>`;
+        }
+      })
+      .catch(err => {
+        spinner.style.display = "none";
+        result.innerHTML = `<div style="color:red;">❌ Gagal terhubung ke server.</div>`;
+      });
+  });
+</script>
+
+<script>
+  // ✅ Fungsi Copy Kode — wajib di luar submit
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Kode berhasil disalin!");
     });
-  </script>
+  }
+
+  // ✅ Auto isi input dari URL — wajib di luar submit juga
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const param = urlParams.get('searchtext');
+    if (param) {
+      document.getElementById("searchtext").value = param;
+      document.getElementById("search-form").dispatchEvent(new Event("submit"));
+    }
+  });
+</script>
+    
 </body>
 </html>
