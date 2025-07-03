@@ -245,12 +245,22 @@ document.getElementById("search-form").addEventListener("submit", function (e) {
     result.innerHTML = `<div style="color:red;">❌ Gagal terhubung ke server.</div>`;
   });
 
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert("Kode berhasil disalin!");
-  });
-}
-</script>
+// ✅ Fungsi copy kode
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Kode berhasil disalin!");
+      });
+    }
 
-  </body>
+    // ✅ AUTO isi input dari URL dan langsung cari
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const param = urlParams.get('searchtext');
+      if (param) {
+        document.getElementById("searchtext").value = param;
+        document.getElementById("search-form").dispatchEvent(new Event("submit"));
+      }
+    });
+  </script>
+</body>
 </html>
