@@ -122,6 +122,32 @@
         background-color: #cc4444;
         transform: scale(1.05);
       }
+
+      .wa-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #25d366;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: pulse 1.5s infinite;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.wa-btn:hover {
+  background-color: #1ebc59;
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
       @media (max-width: 600px) {
         input[type="text"] {
           width: 80%;
@@ -169,7 +195,12 @@
               table += `<div style=\"margin-top: 20px;\"><a href=\"https://maxwinputar.com/lucky-wheel-slotbangjago/\" target=\"_blank\"><button>KLIK INI UNTUK MEMUTAR KODE</button></a></div>`;
               result.innerHTML = table;
             } else {
-              result.innerHTML = `<div style='color:red;font-weight:bold;margin-top:10px;'>❌ Pastikan Userid anda sudah benar.</div>`;
+              result.innerHTML = `
+  <div style='color:red;font-weight:bold;margin-top:10px;'>❌ Pastikan Userid anda sudah benar.</div>
+  <a href="https://klikblg.com/wa-sbj" target="_blank">
+    <button class="wa-btn">KLIK INI ! HUBUNGI WA OFFICIAL KAMI</button>
+  </a>
+`;
             }
           })
           .catch(() => {
