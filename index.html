@@ -142,6 +142,25 @@
   background-color: #1ebc59;
   transform: scale(1.05);
 }
+.spin-link-btn {
+  margin-top: 20px;
+  padding: 10px 30px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: pulse 1.5s infinite;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+      
+.spin-link-btn:hover {
+  background-color: #1e7e34;
+  transform: scale(1.05);
+}
 
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -192,7 +211,11 @@
                 table += `<tr><td>${row[0]}</td><td><div style=\"display:flex;justify-content:center;align-items:center;gap:10px;\"><span>${row[1]}</span><button class=\"copy-btn\" onclick=\"copyToClipboard('${row[1]}')\">Copy</button></div></td><td>${row[2]}</td></tr>`;
               });
               table += `</tbody></table>`;
-              table += `<div style=\"margin-top: 20px;\"><a href=\"https://maxwinputar.com/lucky-wheel-slotbangjago/\" target=\"_blank\"><button>KLIK INI UNTUK MEMUTAR KODE</button></a></div>`;
+              table += `<div style="margin-top: 20px;">
+  <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
+    <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
+  </a>
+</div>`;
               result.innerHTML = table;
             } else {
               result.innerHTML = `
