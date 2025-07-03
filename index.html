@@ -204,7 +204,7 @@
     <h2 style="animation: fadeIn 1.2s ease;">Cari kode luckyspin anda disini</h2>
     <form id="search-form">
       <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
-      <button type="submit" class="cari-btn">Cari</button>
+      <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
       <div id="loading-spinner">
         <div class="spinner"></div>
       </div>
@@ -213,44 +213,61 @@
 
     <script>
       document.getElementById("search-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const input = document.getElementById("searchtext").value.trim();
-        const spinner = document.getElementById("loading-spinner");
-        const result = document.getElementById("result");
-        result.innerHTML = "";
-        spinner.style.display = "flex";
+  e.preventDefault();
 
-        fetch(`https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)}`)
-          .then(response => response.json())
-          .then(response => {
-            spinner.style.display = "none";
-            if (response && response.length > 0) {
-              confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-              let table = `<table class=\"result-table\"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
-              response.forEach(row => {
-                table += `<tr><td>${row[0]}</td><td><div style=\"display:flex;justify-content:center;align-items:center;gap:10px;\"><span>${row[1]}</span><button class=\"copy-btn\" onclick=\"copyToClipboard('${row[1]}')\">Copy</button></div></td><td>${row[2]}</td></tr>`;
-              });
-              table += `</tbody></table>`;
-              table += `<div style="margin-top: 10px;">
-  <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
-    <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
-  </a>
-</div>`;
-              result.innerHTML = table;
-            } else {
-              result.innerHTML = `
-  <div style='color:red;font-weight:bold;margin-top:10px;'>❌ Pastikan Userid anda sudah benar.</div>
-  <a href="https://klikblg.com/wa-sbj" target="_blank">
-    <button class="wa-btn">KLIK INI ! HUBUNGI WA OFFICIAL KAMI</button>
-  </a>
-`;
-            }
-          })
-          .catch(() => {
-            spinner.style.display = "none";
-            result.innerHTML = `<div style='color:red;'>❌ Gagal terhubung ke server.</div>`;
-          });
-      });
+  const input = document.getElementById("searchtext").value.trim();
+  const spinner = document.getElementById("loading-spinner");
+  const result = document.getElementById("result");
+  const searchBtn = document.getElementById("searchBtn");
+
+  result.innerHTML = "";
+  spinner.style.display = "flex";
+
+  // 🔒 Disable tombol cari agar tidak bisa diklik berulang
+  searchBtn.disabled = true;
+  searchBtn.style.opacity = 0.6;
+  searchBtn.style.cursor = "not-allowed";
+
+  fetch(`https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)}`)
+    .then(response => response.json())
+    .then(response => {
+      spinner.style.display = "none";
+
+      // 🔓 Enable kembali tombol
+      searchBtn.disabled = false;
+      searchBtn.style.opacity = 1;
+      searchBtn.style.cursor = "pointer";
+
+      if (response && response.length > 0) {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
+        response.forEach(row => {
+          table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
+        });
+        table += `</tbody></table>`;
+        table += `<div style="margin-top: 10px;">
+          <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
+            <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
+          </a>
+        </div>`;
+        result.innerHTML = table;
+      } else {
+        result.innerHTML = `
+          <div style='color:red;font-weight:bold;margin-top:10px;'>❌ Pastikan Userid anda sudah benar.</div>
+          <a href="https://klikblg.com/wa-sbj" target="_blank">
+            <button class="wa-btn">KLIK INI ! HUBUNGI WA OFFICIAL KAMI</button>
+          </a>
+        `;
+      }
+    })
+    .catch(() => {
+      spinner.style.display = "none";
+      searchBtn.disabled = false;
+      searchBtn.style.opacity = 1;
+      searchBtn.style.cursor = "pointer";
+      result.innerHTML = `<div style='color:red;'>❌ Gagal terhubung ke server.</div>`;
+    });
+});
 
       function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
