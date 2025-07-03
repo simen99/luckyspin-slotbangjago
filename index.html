@@ -166,42 +166,6 @@
 
     <div id="result"></div>
 
-    <script>
-      document.getElementById("search-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const input = document.getElementById("searchtext").value.trim();
-        const spinner = document.getElementById("loading-spinner");
-        const result = document.getElementById("result");
-
-        result.innerHTML = "";
-        spinner.style.display = "flex";
-
-        google.script.run.withSuccessHandler(function (response) {
-          spinner.style.display = "none";
-          if (response && response.length > 0) {
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
-
-            response.forEach(row => {
-              table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
-            });
-
-            table += "</tbody></table>";
-            table += `<div style="margin-top: 20px;"><a href="https://maxwinputar.com/lucky-wheel-slotbangjago/" target="_blank"><button style="background-color:#28a745;color:white;padding:10px 20px;border:none;border-radius:6px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px;transition:background-color 0.3s ease, transform 0.2s ease;" onmouseover="this.style.backgroundColor='#218838';" onmouseout="this.style.backgroundColor='#28a745';" onmousedown="this.style.transform='scale(0.96)';" onmouseup="this.style.transform='scale(1)';">KLIK INI UNTUK MEMUTAR KODE</button></a></div>`;
-            result.innerHTML = table;
-          } else {
-            result.innerHTML = `<div style="color:red;font-weight:bold;margin-top:10px;">❌ Pastikan Userid anda sudah benar.</div><div style="margin-top: 15px;"><a href="https://klikblg.com/wa-sbj" target="_blank"><button style="background-color:#007bff;color:white;padding:10px 18px;border:none;border-radius:6px;font-size:14px;font-weight:bold;cursor:pointer;transition:background-color 0.3s ease, transform 0.2s ease;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';" onmousedown="this.style.transform='scale(0.95)';" onmouseup="this.style.transform='scale(1)';">KLIK INI UNTUK BANTUAN</button></a></div>`;
-          }
-        }).processForm({ searchtext: input });
-      });
-
-      function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-          alert("Kode berhasil disalin!");
-        });
-      }
-    </script>
-
     <!-- Start of LiveChat (www.livechat.com) code -->
     <script>
       window.__lc = window.__lc || {};
@@ -246,6 +210,51 @@
 <a href="https://klikblg.com/wa-sbj" target="_blank" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999;">
   <img src="https://i.ibb.co/mrvRcXRH/Wqtl0ij-Kix.gif" alt="WhatsApp GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
 </a>
+
+    <script>
+document.getElementById("search-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const input = document.getElementById("searchtext").value.trim();
+  const spinner = document.getElementById("loading-spinner");
+  const result = document.getElementById("result");
+
+  result.innerHTML = "";
+  spinner.style.display = "flex";
+
+  fetch("https://script.google.com/macros/s/AKfycbxvBHekJtZ-umVBbb4J7mQe2qoY5YZQHAh1B2zc9gsJjGp1SlbpKb7Ni2CtcXaze_wMYA/exec", {
+    method: "POST",
+    body: new URLSearchParams({ searchtext: input })
+  })
+  .then(response => response.json())
+  .then(response => {
+    spinner.style.display = "none";
+    if (response && response.length > 0) {
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
+
+      response.forEach(row => {
+        table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
+      });
+
+      table += "</tbody></table>";
+      table += `<div style="margin-top: 20px;"><a href="https://maxwinputar.com/lucky-wheel-slotbangjago/" target="_blank"><button style="background-color:#28a745;color:white;padding:10px 20px;border:none;border-radius:6px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px;transition:background-color 0.3s ease, transform 0.2s ease;" onmouseover="this.style.backgroundColor='#218838';" onmouseout="this.style.backgroundColor='#28a745';" onmousedown="this.style.transform='scale(0.96)';" onmouseup="this.style.transform='scale(1)';">KLIK INI UNTUK MEMUTAR KODE</button></a></div>`;
+      result.innerHTML = table;
+    } else {
+      result.innerHTML = `<div style="color:red;font-weight:bold;margin-top:10px;">❌ Pastikan Userid anda sudah benar.</div><div style="margin-top: 15px;"><a href="https://klikblg.com/wa-sbj" target="_blank"><button style="background-color:#007bff;color:white;padding:10px 18px;border:none;border-radius:6px;font-size:14px;font-weight:bold;cursor:pointer;transition:background-color 0.3s ease, transform 0.2s ease;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';" onmousedown="this.style.transform='scale(0.95)';" onmouseup="this.style.transform='scale(1)';">KLIK INI UNTUK BANTUAN</button></a></div>`;
+    }
+  })
+  .catch(err => {
+    spinner.style.display = "none";
+    result.innerHTML = `<div style="color:red;">❌ Gagal terhubung ke server.</div>`;
+  });
+});
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Kode berhasil disalin!");
+  });
+}
+</script>
 
   </body>
 </html>
