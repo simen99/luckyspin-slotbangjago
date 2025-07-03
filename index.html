@@ -155,7 +155,7 @@
         result.innerHTML = "";
         spinner.style.display = "flex";
 
-        fetch(`https://script.google.com/macros/s/AKfycby6KadR_tDbNUMjdCvUh814fWVTAKAS3vrDAtdofFW7V2iDHig1MoGI04Ndzmws7Ms/exec?searchtext=${encodeURIComponent(input)}`)
+        fetch(`https://script.google.com/macros/s/AKfycbyyHiWjdQsYrXOFcYYbvxu295jpJY1hoz9cNmGyDSAl3-snXQlu0zl6N7JA8ZaV4BQtCQ/exec?searchtext=${encodeURIComponent(input)}`)
           .then(response => response.json())
           .then(response => {
             spinner.style.display = "none";
