@@ -137,6 +137,25 @@
   animation: pulse 1.5s infinite;
   transition: transform 0.2s ease, background-color 0.3s ease;
 }
+      .cari-btn {
+  padding: 10px 20px;
+  background-color: #25d366;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: pulse 1.5s infinite;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  margin-top: 5px;
+}
+
+.cari-btn:hover {
+  background-color: #1ebc59;
+  transform: scale(1.05);
+}
 
 .wa-btn:hover {
   background-color: #1ebc59;
@@ -184,7 +203,7 @@
     <h2 style="animation: fadeIn 1.2s ease;">Cari kode luckyspin anda disini</h2>
     <form id="search-form">
       <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
-      <button type="submit" class="wa-btn">Cari</button>
+      <button type="submit" class="cari-btn">Cari</button>
       <div id="loading-spinner">
         <div class="spinner"></div>
       </div>
