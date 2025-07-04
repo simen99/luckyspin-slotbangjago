@@ -7,16 +7,46 @@
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
       appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
       promptOptions: {
-        slidedown: {
-          enabled: false  // ← MATIKAN PROMPT DEFAULT
-        }
+        slidedown: { enabled: false }
       }
     });
+
+    OneSignal.isPushNotificationsEnabled(function (isEnabled) {
+      if (isEnabled) {
+        // Sudah subscribe → jangan munculkan
+        return;
+      }
+
+      // Cek status permission browser
+      OneSignal.getNotificationPermission(function (permission) {
+        if (permission === "default") {
+          // Belum memilih (skip) → munculkan prompt custom
+          const closed = localStorage.getItem("notifClosed");
+          if (closed !== "1") {
+            document.getElementById("custom-prompt").style.display = "block";
+          }
+        }
+        // else: "granted" / "denied" → jangan tampilkan prompt lagi
+      });
+    });
   });
+
+  function allowPush() {
+    OneSignalDeferred.push(function (OneSignal) {
+      OneSignal.Slidedown.promptPush(); // Tampilkan prompt izin browser
+      document.getElementById("custom-prompt").style.display = "none";
+      localStorage.setItem("notifClosed", "1");
+    });
+  }
+
+  function denyPush() {
+    document.getElementById("custom-prompt").style.display = "none";
+    localStorage.setItem("notifClosed", "1");
+  }
 </script>
     <style>
       body {
@@ -369,19 +399,6 @@
     </noscript>
     <!-- End of LiveChat code -->
 
-    <!-- Script isi otomatis input -->
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-  const lastUserID = localStorage.getItem("lastUserID");
-  if (lastUserID) {
-    document.getElementById("searchtext").value = lastUserID;
-  }
-
-  const notifClosed = localStorage.getItem("notifClosed");
-  if (notifClosed === "1") {
-    document.getElementById("custom-prompt").style.display = "none";
-  }
-});
     </script>
 
     <!-- Tombol GIF Telegram -->
@@ -410,19 +427,5 @@
   to   { transform: translateY(0); opacity: 1; }
 }
 </style>
-<script>
-  function allowPush() {
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.Slidedown.promptPush();
-    document.getElementById("custom-prompt").style.display = "none";
-    localStorage.setItem("notifClosed", "1");
-  });
-}
-
-function denyPush() {
-  document.getElementById("custom-prompt").style.display = "none";
-  localStorage.setItem("notifClosed", "1");
-}
-</script>
   </body>
 </html>
