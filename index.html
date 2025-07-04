@@ -79,13 +79,17 @@
         margin: 20px;
       }
       .spinner {
-        width: 20px;
-        height: 20px;
-        border: 3px solid #ccc;
-        border-top: 3px solid #e60000;
-        border-radius: 50%;
-        animation: spin 0.9s linear infinite;
-      }
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #28a745;
+  border-right: 3px solid #f39c12;
+  border-bottom: 3px solid #e60000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 4px;
+  transition: opacity 0.2s ease;
+}
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
@@ -216,10 +220,12 @@
     <h2 style="animation: fadeIn 1.2s ease;">Cari kode luckyspin anda disini</h2>
     <form id="search-form">
       <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
-      <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
-      <div id="loading-spinner">
-        <div class="spinner"></div>
-      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+  <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
+  <div id="loading-spinner" style="display: none;">
+    <div class="spinner"></div>
+  </div>
+</div>
     </form>
     <div id="result"></div>
 
