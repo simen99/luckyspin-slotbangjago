@@ -228,6 +228,7 @@
   e.preventDefault();
 
   const input = document.getElementById("searchtext").value.trim();
+  localStorage.setItem("lastUserID", input);
   const spinner = document.getElementById("loading-spinner");
   const result = document.getElementById("result");
   const searchBtn = document.getElementById("searchBtn");
@@ -325,6 +326,16 @@
       <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
     </noscript>
     <!-- End of LiveChat code -->
+
+    <!-- Script isi otomatis input -->
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const lastUserID = localStorage.getItem("lastUserID");
+        if (lastUserID) {
+          document.getElementById("searchtext").value = lastUserID;
+        }
+      });
+    </script>
 
     <!-- Tombol GIF Telegram -->
     <a href="https://klikblg.com/tele-sbj" target="_blank" style="position: fixed; bottom: 90px; left: 20px; z-index: 9999;">
