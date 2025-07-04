@@ -1,52 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Slotbangjago - Cari Kupon Luckyspin</title>
+    <title>luckyspin-slotbangjago1</title>
     <base target="_top">
-    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/HLr8QhZR/images.jpg?v=2" />
+    <link rel="icon" type="image/png" href="https://i.ibb.co/8LjX3z3Y/logo-sbj-png.png" />
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
       appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
       promptOptions: {
-        slidedown: { enabled: false }
-      }
-    });
-
-    OneSignal.isPushNotificationsEnabled(function (isEnabled) {
-      if (isEnabled) {
-        // Sudah subscribe → jangan munculkan
-        return;
-      }
-
-      // Cek status permission browser
-      OneSignal.getNotificationPermission(function (permission) {
-        if (permission === "default") {
-          // Belum memilih (skip) → munculkan prompt custom
-          const closed = localStorage.getItem("notifClosed");
-          if (closed !== "1") {
-            document.getElementById("custom-prompt").style.display = "block";
-          }
+        slidedown: {
+          enabled: false  // ← MATIKAN PROMPT DEFAULT
         }
-        // else: "granted" / "denied" → jangan tampilkan prompt lagi
-      });
+      }
     });
   });
-
-  function allowPush() {
-    OneSignalDeferred.push(function (OneSignal) {
-      OneSignal.Slidedown.promptPush(); // Tampilkan prompt izin browser
-      document.getElementById("custom-prompt").style.display = "none";
-      localStorage.setItem("notifClosed", "1");
-    });
-  }
-
-  function denyPush() {
-    document.getElementById("custom-prompt").style.display = "none";
-    localStorage.setItem("notifClosed", "1");
-  }
 </script>
     <style>
       body {
@@ -312,7 +282,7 @@
   searchBtn.style.opacity = 0.6;
   searchBtn.style.cursor = "not-allowed";
 
-  fetch(`https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)}`)
+  fetch(https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)})
     .then(response => response.json())
     .then(response => {
       spinner.classList.remove("active");
@@ -325,27 +295,27 @@
 
       if (response && response.length > 0) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
+        let table = <table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>;
         response.forEach(row => {
-          table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
+          table += <tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>;
         });
-        table += `</tbody></table>`;
-        table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
-        table += `<div style="margin-top: 10px;">
+        table += </tbody></table>;
+        table += <div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>;
+        table += <div style="margin-top: 10px;">
           <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
             <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
           </a>
-        </div>`;
+        </div>;
         result.innerHTML = table;
       } else {
-        result.innerHTML = `
+        result.innerHTML = 
   <div class="reminder-text" style="color:red;margin-top:10px;">
     ❌ Pastikan Userid anda sudah benar & Memenuhi Syarat.
   </div>
   <a href="https://klikblg.com/wa-sbj" target="_blank">
     <button class="wa-btn">KLIK INI ! HUBUNGI WA OFFICIAL KAMI</button>
   </a>
-`;
+;
       }
     })
     .catch(() => {
@@ -353,7 +323,7 @@
       searchBtn.disabled = false;
       searchBtn.style.opacity = 1;
       searchBtn.style.cursor = "pointer";
-      result.innerHTML = `<div style='color:red;'>❌ Gagal terhubung ke server.</div>`;
+      result.innerHTML = <div style='color:red;'>❌ Gagal terhubung ke server.</div>;
     });
 });
 
@@ -399,6 +369,19 @@
     </noscript>
     <!-- End of LiveChat code -->
 
+    <!-- Script isi otomatis input -->
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+  const lastUserID = localStorage.getItem("lastUserID");
+  if (lastUserID) {
+    document.getElementById("searchtext").value = lastUserID;
+  }
+
+  const notifClosed = localStorage.getItem("notifClosed");
+  if (notifClosed === "1") {
+    document.getElementById("custom-prompt").style.display = "none";
+  }
+});
     </script>
 
     <!-- Tombol GIF Telegram -->
@@ -413,7 +396,7 @@
 <div id="custom-prompt" class="notif-popup">
   <p style="margin:0 0 8px 0;font-size:14px;">
     <strong>Izinkan Notifikasi?</strong><br>
-    Dapatkan Kupon Luckyspin Instan Tanpa Cek memo!
+    Dapatkan info Luckyspin & bonus terbaru!
   </p>
   <div style="display: flex; justify-content: space-between;">
     <button onclick="allowPush()" style="flex:1; margin-right: 8px; background-color:#28a745; color:white; padding:6px 0; border:none; border-radius:4px; cursor:pointer;">Izinkan</button>
@@ -427,5 +410,19 @@
   to   { transform: translateY(0); opacity: 1; }
 }
 </style>
+<script>
+  function allowPush() {
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.Slidedown.promptPush();
+    document.getElementById("custom-prompt").style.display = "none";
+    localStorage.setItem("notifClosed", "1");
+  });
+}
+
+function denyPush() {
+  document.getElementById("custom-prompt").style.display = "none";
+  localStorage.setItem("notifClosed", "1");
+}
+</script>
   </body>
 </html>
