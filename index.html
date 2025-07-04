@@ -371,12 +371,44 @@
       <img src="https://i.ibb.co/mrvRcXRH/Wqtl0ij-Kix.gif" alt="WhatsApp GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
     </a>
     <!-- Custom OneSignal Prompt -->
-<div id="custom-prompt" style="position: fixed; bottom: 100px; right: 20px; background: white; padding: 15px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;">
-  <p style="margin:0 0 8px 0;"><strong>Izinkan Notifikasi?</strong><br>Dapatkan info Luckyspin & bonus terbaru!</p>
-  <button onclick="allowPush()" style="margin-right: 10px; background-color:#28a745; color:white; padding:5px 10px; border:none; border-radius:4px; cursor:pointer;">Izinkan</button>
-  <button onclick="denyPush()" style="background-color:#dc3545; color:white; padding:5px 10px; border:none; border-radius:4px; cursor:pointer;">Tolak</button>
+<div id="custom-prompt" style="
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+  animation: slideUp 0.4s ease-out;
+  max-width: 320px;
+  width: 90%;
+">
+  <p style="margin:0 0 8px 0;font-size:14px;">
+    <strong>Izinkan Notifikasi?</strong><br>
+    Dapatkan info Luckyspin & bonus terbaru!
+  </p>
+  <div style="display: flex; justify-content: space-between;">
+    <button onclick="allowPush()" style="flex:1; margin-right: 8px; background-color:#28a745; color:white; padding:6px 0; border:none; border-radius:4px; cursor:pointer;">Izinkan</button>
+    <button onclick="denyPush()" style="flex:1; background-color:#dc3545; color:white; padding:6px 0; border:none; border-radius:4px; cursor:pointer;">Tolak</button>
+  </div>
 </div>
 
+<style>
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  #custom-prompt {
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    bottom: 120px !important;
+  }
+}
+</style>
 <script>
   function allowPush() {
     OneSignalDeferred.push(function(OneSignal) {
