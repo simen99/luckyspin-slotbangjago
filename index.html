@@ -308,14 +308,14 @@ table += `<div style="margin-top: 10px;">
 </div>`;
 result.innerHTML = table;
       } else {
-        result.innerHTML = 
+        result.innerHTML = `
   <div class="reminder-text" style="color:red;margin-top:10px;">
     ❌ Pastikan Userid anda sudah benar & Memenuhi Syarat.
   </div>
   <a href="https://klikblg.com/wa-sbj" target="_blank">
     <button class="wa-btn">KLIK INI ! HUBUNGI WA OFFICIAL KAMI</button>
   </a>
-;
+`;
       }
     })
     .catch(() => {
@@ -323,7 +323,7 @@ result.innerHTML = table;
       searchBtn.disabled = false;
       searchBtn.style.opacity = 1;
       searchBtn.style.cursor = "pointer";
-      result.innerHTML = <div style='color:red;'>❌ Gagal terhubung ke server.</div>;
+      result.innerHTML = `<div style='color:red;'>❌ Gagal terhubung ke server.</div>`;
     });
 });
 
