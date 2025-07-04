@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://luckyspin-slotbangjago.vercel.app/sitemap.xml
