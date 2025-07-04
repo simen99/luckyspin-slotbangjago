@@ -9,6 +9,11 @@
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
+      promptOptions: {
+        slidedown: {
+          enabled: false  // ← MATIKAN PROMPT DEFAULT
+        }
+      }
     });
   });
 </script>
@@ -365,5 +370,23 @@
     <a href="https://klikblg.com/wa-sbj" target="_blank" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999;">
       <img src="https://i.ibb.co/mrvRcXRH/Wqtl0ij-Kix.gif" alt="WhatsApp GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
     </a>
+    <!-- Custom OneSignal Prompt -->
+<div id="custom-prompt" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 15px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;">
+  <p style="margin:0 0 8px 0;"><strong>Izinkan Notifikasi?</strong><br>Dapatkan info Luckyspin & bonus terbaru!</p>
+  <button onclick="allowPush()" style="margin-right: 10px; background-color:#28a745; color:white; padding:5px 10px; border:none; border-radius:4px; cursor:pointer;">Izinkan</button>
+  <button onclick="denyPush()" style="background-color:#dc3545; color:white; padding:5px 10px; border:none; border-radius:4px; cursor:pointer;">Tolak</button>
+</div>
+
+<script>
+  function allowPush() {
+    OneSignalDeferred.push(function(OneSignal) {
+      OneSignal.Slidedown.promptPush();
+      document.getElementById("custom-prompt").style.display = "none";
+    });
+  }
+  function denyPush() {
+    document.getElementById("custom-prompt").style.display = "none";
+  }
+</script>
   </body>
 </html>
