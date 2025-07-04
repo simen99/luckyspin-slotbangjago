@@ -215,6 +215,21 @@
   transform: scale(1.05);
 }
 
+.notif-popup {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+  animation: slideUp 0.4s ease-out;
+  max-width: 320px;
+  width: 90%;
+}
+
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
   70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
@@ -371,20 +386,7 @@
       <img src="https://i.ibb.co/mrvRcXRH/Wqtl0ij-Kix.gif" alt="WhatsApp GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
     </a>
     <!-- Custom OneSignal Prompt -->
-<div id="custom-prompt" style="
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  background: white;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 9999;
-  animation: slideUp 0.4s ease-out;
-  max-width: 320px;
-  width: 90%;
-">
+<div id="custom-prompt" class="notif-popup">
   <p style="margin:0 0 8px 0;font-size:14px;">
     <strong>Izinkan Notifikasi?</strong><br>
     Dapatkan info Luckyspin & bonus terbaru!
@@ -394,7 +396,7 @@
     <button onclick="denyPush()" style="flex:1; background-color:#dc3545; color:white; padding:6px 0; border:none; border-radius:4px; cursor:pointer;">Tolak</button>
   </div>
 </div>
-
+    
 <style>
 @keyframes slideUp {
   from { transform: translateY(30px); opacity: 0; }
