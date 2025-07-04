@@ -94,6 +94,18 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
+      .spinner-wrapper {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.spinner-wrapper.active {
+  opacity: 1;
+}
       .result-table {
         margin: 0 auto;
         border-collapse: collapse;
@@ -219,14 +231,14 @@
     <img src="https://i.ibb.co/8LjX3z3Y/logo-sbj-png.png" alt="Logo Slot Bangjago" style="height: 80px; margin-bottom: 10px; animation: fadeIn 1s ease;" />
     <h2 style="animation: fadeIn 1.2s ease;">Cari kode luckyspin anda disini</h2>
     <form id="search-form">
-      <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
-      <div style="display: flex; align-items: center; gap: 8px;">
-  <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
-  <div id="loading-spinner" style="display: none;">
-    <div class="spinner"></div>
+  <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
+    <div id="loading-spinner" class="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
   </div>
-</div>
-    </form>
+</form>
     <div id="result"></div>
 
     <script>
@@ -240,7 +252,7 @@
   const searchBtn = document.getElementById("searchBtn");
 
   result.innerHTML = "";
-  spinner.style.display = "flex";
+  spinner.classList.add("active");
 
   // 🔒 Disable tombol cari agar tidak bisa diklik berulang
   searchBtn.disabled = true;
@@ -251,7 +263,7 @@
   fetch(`https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)}`)
     .then(response => response.json())
     .then(response => {
-      spinner.style.display = "none";
+      spinner.classList.remove("active");
 
       // 🔓 Enable kembali tombol
       searchBtn.disabled = false;
@@ -283,7 +295,7 @@
       }
     })
     .catch(() => {
-      spinner.style.display = "none";
+      spinner.classList.remove("active");
       searchBtn.disabled = false;
       searchBtn.style.opacity = 1;
       searchBtn.style.cursor = "pointer";
