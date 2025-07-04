@@ -295,18 +295,18 @@
 
       if (response && response.length > 0) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        let table = <table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>;
-        response.forEach(row => {
-          table += <tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>;
-        });
-        table += </tbody></table>;
-        table += <div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>;
-        table += <div style="margin-top: 10px;">
-          <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
-            <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
-          </a>
-        </div>;
-        result.innerHTML = table;
+        let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
+response.forEach(row => {
+  table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
+});
+table += `</tbody></table>`;
+table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
+table += `<div style="margin-top: 10px;">
+  <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
+    <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
+  </a>
+</div>`;
+result.innerHTML = table;
       } else {
         result.innerHTML = 
   <div class="reminder-text" style="color:red;margin-top:10px;">
