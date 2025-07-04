@@ -3,6 +3,7 @@
   <head>
     <title>luckyspin-slotbangjago1</title>
     <base target="_top">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/8LjX3z3Y/logo-sbj-png.png" />
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -218,7 +219,8 @@
 .notif-popup {
   position: fixed;
   bottom: 100px;
-  right: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   background: white;
   padding: 15px;
   border: 1px solid #ccc;
@@ -370,11 +372,16 @@
     <!-- Script isi otomatis input -->
     <script>
       window.addEventListener("DOMContentLoaded", () => {
-        const lastUserID = localStorage.getItem("lastUserID");
-        if (lastUserID) {
-          document.getElementById("searchtext").value = lastUserID;
-        }
-      });
+  const lastUserID = localStorage.getItem("lastUserID");
+  if (lastUserID) {
+    document.getElementById("searchtext").value = lastUserID;
+  }
+
+  const notifClosed = localStorage.getItem("notifClosed");
+  if (notifClosed === "1") {
+    document.getElementById("custom-prompt").style.display = "none";
+  }
+});
     </script>
 
     <!-- Tombol GIF Telegram -->
@@ -402,25 +409,20 @@
   from { transform: translateY(30px); opacity: 0; }
   to   { transform: translateY(0); opacity: 1; }
 }
-
-@media (max-width: 600px) {
-  #custom-prompt {
-    right: 50% !important;
-    transform: translateX(-50%) !important;
-    bottom: 120px !important;
-  }
-}
 </style>
 <script>
   function allowPush() {
-    OneSignalDeferred.push(function(OneSignal) {
-      OneSignal.Slidedown.promptPush();
-      document.getElementById("custom-prompt").style.display = "none";
-    });
-  }
-  function denyPush() {
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.Slidedown.promptPush();
     document.getElementById("custom-prompt").style.display = "none";
-  }
+    localStorage.setItem("notifClosed", "1");
+  });
+}
+
+function denyPush() {
+  document.getElementById("custom-prompt").style.display = "none";
+  localStorage.setItem("notifClosed", "1");
+}
 </script>
   </body>
 </html>
