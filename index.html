@@ -352,23 +352,25 @@ response.forEach(row => {
   const expText = expiredDate.toLocaleDateString('id-ID', options);
 
   table += `<tr>
-    <td>${row[0]}</td>
-   <td>
-  <div style="display:inline-block; text-align:left;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <span>${row[1]}</span>
-      <button class="copy-btn" onclick="copyToClipboard('${row[1]}', this)">Copy</button>
+  <td style="text-align:center;">${row[0]}</td>
+  <td style="text-align:center;">
+    <div>
+      <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
+        <span>${row[1]}</span>
+        <button class="copy-btn" onclick="copyToClipboard('${row[1]}', this)">Copy</button>
+      </div>
+      <div style="font-size:12px;color:#e60000;font-weight:bold;margin-top:4px;">
+        Hadiah Anti Zonk Segera Spin Sekarang!
+      </div>
     </div>
-    <div style="font-size:12px;color:#e60000;font-weight:bold;margin-top:4px;">Hadiah Anti Zonk Segera Spin Sekarang!</div>
-  </div>
-</td>
-    <td>
-  <div style="display:inline-block; text-align:left;">
+  </td>
+  <td style="text-align:center;">
     <div>${row[2]}</div>
-    <div style="font-size:12px;color:#e60000;font-weight:bold;margin-top:4px;">Kupon Hangus : ${expText}</div>
-  </div>
-</td>
-  </tr>`;
+    <div style="font-size:12px;color:#e60000;font-weight:bold;margin-top:4px;">
+      Kupon Hangus : ${expText}
+    </div>
+  </td>
+</tr>`;
 });
 table += `</tbody></table>`;
 table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
