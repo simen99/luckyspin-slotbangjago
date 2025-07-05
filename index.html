@@ -306,6 +306,8 @@
   searchBtn.innerText = "Mencari...";
   searchBtn.style.opacity = 0.6;
   searchBtn.style.cursor = "not-allowed";
+  searchBtn.style.pointerEvents = "none";
+  searchBtn.style.pointerEvents = "auto";
 
   fetch(`https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)}`)
     .then(response => response.json())
@@ -355,12 +357,23 @@ result.innerHTML = table;
       function showCustomAlert(message) {
   const alertBox = document.getElementById("custom-alert");
   const messageSpan = document.getElementById("custom-alert-message");
+  const sound = document.getElementById("alertSound");
+
   messageSpan.innerText = message;
   alertBox.style.display = "block";
 
+  // 🔊 Putar suara notifikasi
+  if (sound) sound.play();
+
+  // 📳 Getar di HP (jika didukung)
+  if (navigator.vibrate) {
+    navigator.vibrate(100);  // getar 100ms
+  }
+
+  // ⏳ Sembunyikan alert setelah 3 detik
   setTimeout(() => {
     alertBox.style.display = "none";
-  }, 2500);
+  }, 3000);
 }
 
       function copyToClipboard(text) {
@@ -464,5 +477,6 @@ function denyPush() {
     <div id="custom-alert" style="display:none;" class="custom-alert">
   <span id="custom-alert-message"></span>
 </div>
+    <audio id="alertSound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
   </body>
 </html>
