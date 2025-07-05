@@ -2,7 +2,9 @@
   "theme_color": "#cc0000",
   "name": "SlotBangJago LuckySpin",
   "background_color": "#000000",
-  "short_name": "SBJ_LSPIN",
+  "short_name": "SBJ_SPIN",
   "id": "slotbangjago.luckyspin",
-  "description": "Putar roda keberuntungan &amp; klaim hadiah dari SlotBangJago LuckySpin sekarang juga!"
+  "start_url": "/index.html",
+  "display": "standalone",
+  "description": "Putar roda keberuntungan & klaim hadiah dari SlotBangJago LuckySpin sekarang juga!"
 }
