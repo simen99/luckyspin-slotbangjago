@@ -269,6 +269,10 @@
 
   const input = document.getElementById("searchtext").value.trim();
   localStorage.setItem("lastUserID", input);
+  if (input.length < 3) {
+  alert("User ID minimal 3 karakter");
+  return;
+}
   const spinner = document.getElementById("loading-spinner");
   const result = document.getElementById("result");
   const searchBtn = document.getElementById("searchBtn");
