@@ -343,7 +343,7 @@
 
       if (response && response.length > 0) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
+        let table = `<table class="result-table"><thead><tr><th>USERNAME</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
 response.forEach(row => {
   const tanggal = new Date(row[2]);
   const expiredDate = new Date(tanggal);
