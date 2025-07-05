@@ -1,18 +1,22 @@
 {
-  "theme_color": "#cc0000",
   "name": "SlotBangJago LuckySpin",
-  "background_color": "#000000",
   "short_name": "SBJ_SPIN",
-  "id": "slotbangjago.luckyspin",
   "start_url": "/index.html",
   "display": "standalone",
-  "description": "Putar roda keberuntungan &amp; klaim hadiah dari SlotBangJago LuckySpin sekarang juga!",
+  "background_color": "#000000",
+  "theme_color": "#cc0000",
+  "orientation": "portrait",
+  "id": "slotbangjago.luckyspin",
+  "description": "Putar roda keberuntungan & klaim hadiah dari SlotBangJago LuckySpin sekarang juga!",
   "icons": [
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "lang": "id",
+  "scope": "/",
+  "dir": "ltr"
 }
