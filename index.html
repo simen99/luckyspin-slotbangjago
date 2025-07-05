@@ -324,7 +324,7 @@
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         let table = `<table class="result-table"><thead><tr><th>USERID</th><th>KODE LUCKYSPIN</th><th>TANGGAL</th></tr></thead><tbody>`;
 response.forEach(row => {
-  table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}')">Copy</button></div></td><td>${row[2]}</td></tr>`;
+  table += `<tr><td>${row[0]}</td><td><div style="display:flex;justify-content:center;align-items:center;gap:10px;"><span>${row[1]}</span><button class="copy-btn" onclick="copyToClipboard('${row[1]}', this)">Copy</button></div></td><td>${row[2]}</td></tr>`;
 });
 table += `</tbody></table>`;
 table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
@@ -376,11 +376,22 @@ result.innerHTML = table;
   }, 3000);
 }
 
-      function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-          alert("Kode berhasil disalin!");
-        });
-      }
+      function copyToClipboard(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    // Simpan teks asli tombol
+    const original = btn.innerHTML;
+
+    // Ganti jadi ✅
+    btn.innerHTML = "✅";
+    btn.style.backgroundColor = "#28a745";
+
+    // Kembalikan setelah 2 detik
+    setTimeout(() => {
+      btn.innerHTML = original;
+      btn.style.backgroundColor = ""; // reset warna
+    }, 2000);
+  });
+}
     </script>
 
     <!-- Start of LiveChat (www.livechat.com) code -->
