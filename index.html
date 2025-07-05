@@ -187,6 +187,27 @@
   height: 42px;
 }
 
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #cc0000;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  animation: slideDownFade 0.5s ease;
+}
+
+@keyframes slideDownFade {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
 .cari-btn:hover {
   background-color: #1ebc59;
   transform: scale(1.05);
@@ -270,7 +291,7 @@
   const input = document.getElementById("searchtext").value.trim();
   localStorage.setItem("lastUserID", input);
   if (input.length < 3) {
-  alert("User ID minimal 3 karakter");
+  showCustomAlert("User ID minimal 3 karakter");
   return;
 }
   const spinner = document.getElementById("loading-spinner");
@@ -330,6 +351,17 @@ result.innerHTML = table;
       result.innerHTML = `<div style='color:red;'>❌ Gagal terhubung ke server.</div>`;
     });
 });
+
+      function showCustomAlert(message) {
+  const alertBox = document.getElementById("custom-alert");
+  const messageSpan = document.getElementById("custom-alert-message");
+  messageSpan.innerText = message;
+  alertBox.style.display = "block";
+
+  setTimeout(() => {
+    alertBox.style.display = "none";
+  }, 2500);
+}
 
       function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
@@ -427,6 +459,10 @@ function denyPush() {
   document.getElementById("custom-prompt").style.display = "none";
   localStorage.setItem("notifClosed", "1");
 }
+
 </script>
+    <div id="custom-alert" style="display:none;" class="custom-alert">
+  <span id="custom-alert-message"></span>
+</div>
   </body>
 </html>
