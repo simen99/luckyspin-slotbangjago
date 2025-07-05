@@ -231,6 +231,20 @@
   animation: pulse 1.5s infinite;
   transition: transform 0.2s ease, background-color 0.3s ease;
 }
+.fade-in-success {
+  animation: fadeInZoom 0.4s ease;
+}
+
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
       
 .spin-link-btn:hover {
   background-color: #1e7e34;
@@ -378,17 +392,18 @@ result.innerHTML = table;
 
       function copyToClipboard(text, btn) {
   navigator.clipboard.writeText(text).then(() => {
-    // Simpan teks asli tombol
     const original = btn.innerHTML;
 
-    // Ganti jadi ✅
+    // Ganti jadi ✅ dan tambahkan animasi
     btn.innerHTML = "✅";
     btn.style.backgroundColor = "#28a745";
+    btn.classList.add("fade-in-success");
 
     // Kembalikan setelah 2 detik
     setTimeout(() => {
       btn.innerHTML = original;
-      btn.style.backgroundColor = ""; // reset warna
+      btn.style.backgroundColor = "";
+      btn.classList.remove("fade-in-success");
     }, 2000);
   });
 }
