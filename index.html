@@ -58,10 +58,16 @@
     100% { opacity: 1; transform: scale(1); }
 }  /* <-- tambahkan ini */
       input[type="text"]:focus {
-        outline: none;
-        box-shadow: 0 0 6px #28a745;
-        border-color: #28a745;
-      }
+  outline: none;
+  border-color: #28a745;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 6px #28a745; }
+  to   { box-shadow: 0 0 12px #28a745; }
+}
+     
       button {
         padding: 10px 20px;
         background-color: #28a745;
