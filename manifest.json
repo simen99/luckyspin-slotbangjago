@@ -9,13 +9,19 @@
   "id": "slotbangjago.luckyspin",
   "description": "Putar roda keberuntungan & klaim hadiah dari SlotBangJago LuckySpin sekarang juga!",
   "icons": [
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
+  {
+    "src": "/icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "any"
+  },
+  {
+    "src": "/icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "maskable"
+  }
+],
   "lang": "id",
   "scope": "/",
   "dir": "ltr"
