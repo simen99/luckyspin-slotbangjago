@@ -734,53 +734,37 @@ function denyPush() {
     transition: background-color 0.2s ease;
   ">TUTUP</button>
 </div>
+  <script>
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+
+  // ✅ Tampilkan tombol install
+  installBtn.style.display = 'inline-block';
+
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    } else {
+      alert("Gunakan browser seperti Chrome agar apk lancar.");
+    }
+  });
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+</script>
     
-<script>
-  let deferredPrompt;
-  const installBtn = document.getElementById('installBtn');
-
-  // 🟢 SELALU tampilkan tombol
-  installBtn.style.display = 'inline-block';
-
-  // Tombol tetap bisa di-klik, walau prompt belum tersedia
-  installBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    } else {
-      alert("Gunakan browser seperti Chrome agar apk lancar.");
-    }
-  });
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-  });
+    <script>
+function closePopup() {
+  const overlay = document.getElementById("popup-overlay");
+  overlay.style.display = "none";
+  clearInterval(window.sliderInterval);
+}
 </script>
-<script>
-  let deferredPrompt;
-  const installBtn = document.getElementById('installBtn');
-
-  installBtn.style.display = 'inline-block';
-
-  installBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    } else {
-      alert("Gunakan browser seperti Chrome agar apk lancar.");
-    }
-  });
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-  });
-</script>
-
-<!-- ⬇️ Tambahkan script slider popup di bawah sini -->
+    
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const overlay = document.getElementById("popup-overlay");
@@ -788,7 +772,6 @@ function denyPush() {
     const dots = document.querySelectorAll(".dot");
     const images = document.querySelectorAll("#popup-content img");
     let index = 0;
-    let interval;
 
     function showImage(i) {
       images.forEach((img, idx) => {
@@ -798,18 +781,17 @@ function denyPush() {
     }
 
     function startAutoSlide() {
-      interval = setInterval(() => {
-        index = (index + 1) % images.length;
-        showImage(index);
-      }, 6000); // auto slide 6 detik
-    }
+      window.sliderInterval = setInterval(() => {
+  index = (index + 1) % images.length;
+  showImage(index);
+}, 6000);
 
     // Klik dot
     dots.forEach((dot, i) => {
       dot.addEventListener("click", () => {
         index = i;
         showImage(index);
-        clearInterval(interval); // hentikan auto sebentar
+        clearInterval(window.sliderInterval);
         startAutoSlide(); // lanjut auto lagi
       });
     });
@@ -817,12 +799,8 @@ function denyPush() {
     // Tombol close
     closeBtn.addEventListener("click", () => {
   overlay.style.display = "none";
-  clearInterval(interval);
+  clearInterval(window.sliderInterval)
 });
-    function closePopup() {
-  overlay.style.display = "none";
-  clearInterval(interval);
-}
       overlay.style.display = "flex";
 showImage(index);
 startAutoSlide();
