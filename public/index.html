@@ -342,6 +342,12 @@
   70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
+
+@keyframes pulseX {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.6); }
+  70% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(204, 0, 0, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(204, 0, 0, 0); }
+}
       @media (max-width: 600px) {
         input[type="text"] {
           width: 80%;
@@ -394,6 +400,9 @@
 }
 #close-popup:hover {
   transform: scale(1.1);
+}
+.pulse-x {
+  animation: pulseX 1.5s infinite;
 }
 .slider {
   position: relative;
@@ -700,7 +709,7 @@ function denyPush() {
     <audio id="alertSound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
 <div id="popup-overlay">
   <div id="popup-content">
-    <button id="close-popup">✖</button>  <!-- ✅ TARUH DI DALAM popup-content -->
+    <button id="close-popup" class="pulse-x">✖</button>
     <div class="slider">
   <img src="https://i.ibb.co/wF3CKp7j/POPUP-SBJ-TABLE-PEMENANG-2-20252037072037.jpg" alt="Promo 1" />
   <img src="https://i.ibb.co/0jMbqY6j/slotbangjago-popup-bonus-deposit-vip-20253458163458.jpg" alt="Promo 2" />
