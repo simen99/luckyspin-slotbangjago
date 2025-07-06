@@ -423,9 +423,9 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 10000;
-  background: rgba(255,255,255,0.8);
-  padding: 4px 8px;
-  border-radius: 12px;
+  background: none;       /* ❌ Hilangkan latar belakang putih */
+  padding: 0;             /* ❌ Hilangkan jarak di sekeliling titik */
+  border-radius: 0;       /* ❌ Tidak perlu rounded jika tak ada background */
 }
 .dot {
   display: inline-block;
