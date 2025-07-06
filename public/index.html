@@ -259,20 +259,27 @@
 }
 .install-fab {
   position: fixed;
-  bottom: 160px;
-  left: 20px;
+  bottom: 160px;  /* Atur jarak dari bawah */
+  left: 20px;     /* Sama dengan tombol Telegram */
   width: 56px;
   height: 56px;
   border-radius: 50%;
   background-color: #28a745;
   color: white;
-  font-size: 22px;
+  font-size: 12px;  /* Agar tulisan “APK KUPON” muat */
   border: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   z-index: 9999;
   animation: pulse 1.8s infinite;
   transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.1;
 }
 
 .install-fab:hover {
@@ -320,18 +327,13 @@
   <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
   <div style="display: flex; align-items: center; gap: 8px;">
     <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
+    <button id="installBtn" class="cari-btn" style="display: none; white-space: nowrap;">DOWNLOAD APK</button>
     <div id="loading-spinner" class="spinner-wrapper">
       <div class="spinner"></div>
     </div>
   </div>
 </form>
     <div id="result"></div>
-
-    <!-- Tombol Install Aplikasi Mengambang -->
-<button id="installBtn" class="install-fab" style="display:none;" title="Download APK Cari Kupon">
-  APK
-  KUPON
-</button>
     
     <script>
       document.getElementById("search-form").addEventListener("submit", function (e) {
