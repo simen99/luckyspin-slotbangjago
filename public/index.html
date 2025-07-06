@@ -309,15 +309,19 @@
       document.getElementById("search-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const input = document.getElementById("searchtext").value.trim();
-  localStorage.setItem("lastUserID", input);
-  if (input.length < 3) {
+  const searchBtn = document.getElementById("searchBtn");
+if (searchBtn.disabled) return; // ✅ Cegah double submit
+
+const input = document.getElementById("searchtext").value.trim();
+localStorage.setItem("lastUserID", input);
+
+if (input.length < 3) {
   showCustomAlert("User ID minimal 3 karakter");
   return;
 }
-  const spinner = document.getElementById("loading-spinner");
-  const result = document.getElementById("result");
-  const searchBtn = document.getElementById("searchBtn");
+
+const spinner = document.getElementById("loading-spinner");
+const result = document.getElementById("result");
 
   result.innerHTML = "";
   spinner.classList.add("active");
@@ -328,7 +332,6 @@
   searchBtn.style.opacity = 0.6;
   searchBtn.style.cursor = "not-allowed";
   searchBtn.style.pointerEvents = "none";
-  searchBtn.style.pointerEvents = "auto";
 
   fetch(`https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)}`)
     .then(response => response.json())
