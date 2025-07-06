@@ -334,6 +334,72 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+  /* ⬇️ TAMBAHKAN DI SINI */
+#popup-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#popup-content {
+  width: 600px;
+  height: 344px;
+  background: white;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+#popup-content img {
+  width: 100%;
+  height: auto;
+  display: none;
+  border-radius: 6px;
+}
+#popup-content img.active {
+  display: block;
+}
+#close-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10000;
+}
+.dots {
+  margin-top: 6px;
+}
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: gray;
+  border-radius: 50%;
+  margin: 0 4px;
+  cursor: pointer;
+}
+.dot.active {
+  background: #28a745;
+}
+/* ⬆️ SAMPAI SINI */
+
+/* Terakhir, tutup style */
+</style>
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
@@ -594,6 +660,22 @@ function denyPush() {
   <span id="custom-alert-message"></span>
 </div>
     <audio id="alertSound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
+<div id="popup-overlay" style="display:none;">
+  <div id="popup-content">
+    <button id="close-popup">✖</button>
+    <div class="slider">
+      <img src="popup1.jpg" alt="Promo 1" />
+      <img src="popup2.jpg" alt="Promo 2" />
+      <img src="popup3.jpg" alt="Promo 3" />
+    </div>
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</div>
+    
 <script>
   let deferredPrompt;
   const installBtn = document.getElementById('installBtn');
@@ -615,6 +697,62 @@ function denyPush() {
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
+  });
+</script>
+<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+
+  installBtn.style.display = 'inline-block';
+
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    } else {
+      alert("Gunakan browser seperti Chrome agar apk lancar.");
+    }
+  });
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+</script>
+
+<!-- ⬇️ Tambahkan script slider popup di bawah sini -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("popup-overlay");
+    const closeBtn = document.getElementById("close-popup");
+    const dots = document.querySelectorAll(".dot");
+    const images = document.querySelectorAll("#popup-content img");
+    let index = 0;
+
+    function showImage(i) {
+      images.forEach((img, idx) => {
+        img.classList.toggle("active", idx === i);
+        dots[idx].classList.toggle("active", idx === i);
+      });
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        index = i;
+        showImage(index);
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+      localStorage.setItem("popupShown", "1");
+    });
+
+    if (!localStorage.getItem("popupShown")) {
+      overlay.style.display = "flex";
+      showImage(index);
+    }
   });
 </script>
 </body>
