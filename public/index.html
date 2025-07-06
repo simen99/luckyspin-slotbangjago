@@ -579,24 +579,24 @@ function denyPush() {
   let deferredPrompt;
   const installBtn = document.getElementById('installBtn');
 
-  // Tombol selalu tampil
+  // 🟢 SELALU tampilkan tombol
   installBtn.style.display = 'inline-block';
+
+  // Tombol tetap bisa di-klik, walau prompt belum tersedia
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    } else {
+      alert("Gunakan browser seperti Chrome, Edge, atau Brave untuk memasang aplikasi.");
+    }
+  });
 
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-
-    installBtn.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    installBtn.disabled = true;
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(outcome === 'accepted' ? "✅ User accepted PWA install" : "❌ User dismissed");
-    deferredPrompt = null;
-  } else {
-    alert("Silakan gunakan browser yang mendukung install aplikasi (Chrome, Edge, dll).");
-  }
- }); // Tutup event listener
-</script> <!-- ✅ Tambahkan ini -->
+  });
+</script>
 </body>
 </html>
