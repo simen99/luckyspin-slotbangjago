@@ -379,14 +379,14 @@
       
 #close-popup {
   position: absolute;
-  top: 4px;          /* ⬅️ dari -5px → 4px (turun sedikit biar center) */
-  right: -18px;      /* ⬅️ dari -20px → -18px (geser kanan biar pas) */
+  top: 10px;
+  right: 10px;
   background: #cc0000;
   color: white;
   border: none;
   border-radius: 50%;
-  padding: 8px 12px;
-  font-size: 16px;
+  padding: 10px 14px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   z-index: 10001;
@@ -699,9 +699,9 @@ function denyPush() {
   <span id="custom-alert-message"></span>
 </div>
     <audio id="alertSound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
-<div id="popup-overlay" style="display:none;">
+<div id="popup-overlay">
+  <button id="close-popup">✖</button>  <!-- ⬅️ TARUH DI SINI -->
   <div id="popup-content">
-    <button id="close-popup">✖</button>
     <div class="slider">
   <img src="https://i.ibb.co/wF3CKp7j/POPUP-SBJ-TABLE-PEMENANG-2-20252037072037.jpg" alt="Promo 1" />
   <img src="https://i.ibb.co/0jMbqY6j/slotbangjago-popup-bonus-deposit-vip-20253458163458.jpg" alt="Promo 2" />
