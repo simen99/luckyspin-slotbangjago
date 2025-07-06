@@ -27,6 +27,24 @@
         margin-top: 40px;
         overflow-x: hidden;
       }
+      .dots {
+  margin-top: 10px;
+  text-align: center;
+}
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: gray;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.dot.active {
+  background: #28a745;
+}
+      
       h2 {
         color: #333;
       }
@@ -729,6 +747,7 @@ function denyPush() {
     const dots = document.querySelectorAll(".dot");
     const images = document.querySelectorAll("#popup-content img");
     let index = 0;
+    let interval;
 
     function showImage(i) {
       images.forEach((img, idx) => {
@@ -737,28 +756,33 @@ function denyPush() {
       });
     }
 
+    function startAutoSlide() {
+      interval = setInterval(() => {
+        index = (index + 1) % images.length;
+        showImage(index);
+      }, 6000); // auto slide 6 detik
+    }
+
+    // Klik dot
     dots.forEach((dot, i) => {
-  dot.addEventListener("click", () => {
-    index = i;
-    showImage(index);
-  });
-});
+      dot.addEventListener("click", () => {
+        index = i;
+        showImage(index);
+        clearInterval(interval); // hentikan auto sebentar
+        startAutoSlide(); // lanjut auto lagi
+      });
+    });
 
-closeBtn.addEventListener("click", () => {
+    // Tombol close
+    closeBtn.addEventListener("click", () => {
   overlay.style.display = "none";
-  localStorage.setItem("popupShown", "1");
+  clearInterval(interval);
 });
 
-if (!localStorage.getItem("popupShown")) {
-  overlay.style.display = "flex";
-  showImage(index);
-
-  // 🔁 Auto slide setiap 4 detik
-  setInterval(() => {
-    index = (index + 1) % images.length;
-    showImage(index);
-  }, 6000); // bisa diganti 6000 untuk 6 detik
-}
+      overlay.style.display = "flex";
+showImage(index);
+startAutoSlide();
+    }
   });
 </script>
 </body>
