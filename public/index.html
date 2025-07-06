@@ -257,6 +257,27 @@
   background-color: #1e7e34;
   transform: scale(1.05);
 }
+.install-fab {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #28a745;
+  color: white;
+  font-size: 22px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  z-index: 9999;
+  animation: pulse 1.8s infinite;
+  transition: transform 0.2s ease;
+}
+
+.install-fab:hover {
+  transform: scale(1.1);
+}
 
 .notif-popup {
   position: fixed;
@@ -288,6 +309,7 @@
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
@@ -305,9 +327,9 @@
 </form>
     <div id="result"></div>
 
-    <!-- Tombol Install Aplikasi -->
-<button id="installBtn" class="spin-link-btn" style="display:none; margin-top: 20px;">
-  📲 Download Aplikasi SlotBangJago
+    <!-- Tombol Install Aplikasi Mengambang -->
+<button id="installBtn" class="install-fab" style="display:none;" title="Download APK Cari Kupon">
+  📲
 </button>
     
     <script>
