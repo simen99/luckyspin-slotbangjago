@@ -376,15 +376,7 @@
   padding: 10px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
-#popup-content img {
-  width: 100%;
-  height: auto;
-  display: none;
-  border-radius: 6px;
-}
-#popup-content img.active {
-  display: block;
-}
+      
 #close-popup {
   position: absolute;
   top: 10px;
@@ -398,8 +390,28 @@
   font-weight: bold;
   z-index: 10000;
 }
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slider img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 .dots {
-  margin-top: 6px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  background: rgba(255,255,255,0.8);
+  padding: 4px 8px;
+  border-radius: 12px;
 }
 .dot {
   display: inline-block;
@@ -413,9 +425,12 @@
 .dot.active {
   background: #28a745;
 }
-/* ⬆️ SAMPAI SINI */
-
-/* Terakhir, tutup style */
+#popup-content img {
+  display: none;
+}
+#popup-content img.active {
+  display: block;
+}
 </style>
 
     </style>
@@ -685,12 +700,11 @@ function denyPush() {
   <img src="https://i.ibb.co/wF3CKp7j/POPUP-SBJ-TABLE-PEMENANG-2-20252037072037.jpg" alt="Promo 1" />
   <img src="https://i.ibb.co/0jMbqY6j/slotbangjago-popup-bonus-deposit-vip-20253458163458.jpg" alt="Promo 2" />
   <img src="https://i.ibb.co/xqQk1ncH/slotbangjago-popup-all-promo6-20251320191320.jpg" alt="Promo 3" />
-</div>
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+ </div>
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
   </div>
 </div>
     
