@@ -27,24 +27,6 @@
         margin-top: 40px;
         overflow-x: hidden;
       }
-      .dots {
-  margin-top: 10px;
-  text-align: center;
-}
-.dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background: gray;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.dot.active {
-  background: #28a745;
-}
-      
       h2 {
         color: #333;
       }
@@ -342,12 +324,6 @@
   70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
-
-@keyframes pulseX {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.6); }
-  70% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(204, 0, 0, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(204, 0, 0, 0); }
-}
       @media (max-width: 600px) {
         input[type="text"] {
           width: 80%;
@@ -357,95 +333,6 @@
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
-  /* ⬇️ TAMBAHKAN DI SINI */
-#popup-overlay {
-  position: fixed;
-  z-index: 9999;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#popup-content {
-  width: 600px;
-  height: 344px;
-  background: white;
-  border-radius: 10px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-}
-      
-#close-popup {
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  background: #cc0000;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 10px 14px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10001;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
-}
-#close-popup:hover {
-  transform: scale(1.1);
-}
-.pulse-x {
-  animation: pulseX 1.5s infinite;
-}
-.slider {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.slider img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-.dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10000;
-  background: none;       /* ❌ Hilangkan latar belakang putih */
-  padding: 0;             /* ❌ Hilangkan jarak di sekeliling titik */
-  border-radius: 0;       /* ❌ Tidak perlu rounded jika tak ada background */
-}
-.dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: gray;
-  border-radius: 50%;
-  margin: 0 4px;
-  cursor: pointer;
-}
-.dot.active {
-  background: #28a745;
-}
-#popup-content img {
-  display: none;
-}
-#popup-content img.active {
-  display: block;
-}
-</style>
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -707,40 +594,14 @@ function denyPush() {
   <span id="custom-alert-message"></span>
 </div>
     <audio id="alertSound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
-<div id="popup-overlay">
-  <div id="popup-content">
-    <button id="close-popup" class="pulse-x">✖</button>
-    <div class="slider">
-  <img src="https://i.ibb.co/wF3CKp7j/POPUP-SBJ-TABLE-PEMENANG-2-20252037072037.jpg" alt="Promo 1" />
-  <img src="https://i.ibb.co/0jMbqY6j/slotbangjago-popup-bonus-deposit-vip-20253458163458.jpg" alt="Promo 2" />
-  <img src="https://i.ibb.co/xqQk1ncH/slotbangjago-popup-all-promo6-20251320191320.jpg" alt="Promo 3" />
- </div>
-    <div class="dots">
-  <span class="dot active"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
-  <div style="margin-top: 12px;">
-  <button onclick="closePopup()" style="
-    background-color: #cc0000;
-    color: white;
-    padding: 6px 16px;
-    font-size: 13px;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: background-color 0.2s ease;
-  ">TUTUP</button>
-</div>
-  <script>
+<script>
   let deferredPrompt;
   const installBtn = document.getElementById('installBtn');
 
-  // ✅ Tampilkan tombol install
+  // 🟢 SELALU tampilkan tombol
   installBtn.style.display = 'inline-block';
 
+  // Tombol tetap bisa di-klik, walau prompt belum tersedia
   installBtn.addEventListener('click', async () => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -754,56 +615,6 @@ function denyPush() {
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-  });
-</script>
-    
-    <script>
-function closePopup() {
-  const overlay = document.getElementById("popup-overlay");
-  overlay.style.display = "none";
-  clearInterval(window.sliderInterval);
-}
-</script>
-    
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const overlay = document.getElementById("popup-overlay");
-    const closeBtn = document.getElementById("close-popup");
-    const dots = document.querySelectorAll(".dot");
-    const images = document.querySelectorAll("#popup-content img");
-    let index = 0;
-
-    function showImage(i) {
-      images.forEach((img, idx) => {
-        img.classList.toggle("active", idx === i);
-        dots[idx].classList.toggle("active", idx === i);
-      });
-    }
-
-    function startAutoSlide() {
-      window.sliderInterval = setInterval(() => {
-  index = (index + 1) % images.length;
-  showImage(index);
-}, 6000);
-
-    // Klik dot
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => {
-        index = i;
-        showImage(index);
-        clearInterval(window.sliderInterval);
-        startAutoSlide(); // lanjut auto lagi
-      });
-    });
-
-    // Tombol close
-    closeBtn.addEventListener("click", () => {
-  overlay.style.display = "none";
-  clearInterval(window.sliderInterval)
-});
-      overlay.style.display = "flex";
-showImage(index);
-startAutoSlide();
   });
 </script>
 </body>
