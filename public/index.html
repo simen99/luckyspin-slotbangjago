@@ -379,16 +379,19 @@
       
 #close-popup {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -12px;       /* ⬅️ Naik ke atas luar kotak */
+  right: -12px;     /* ⬅️ Geser ke kanan luar kotak */
   background: #cc0000;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 6px 12px;
-  cursor: pointer;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
   font-weight: bold;
-  z-index: 10000;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 10001;
 }
 .slider {
   position: relative;
