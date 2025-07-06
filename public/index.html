@@ -305,6 +305,11 @@
 </form>
     <div id="result"></div>
 
+    <!-- Tombol Install Aplikasi -->
+<button id="installBtn" class="spin-link-btn" style="display:none; margin-top: 20px;">
+  📲 Download Aplikasi SlotBangJago
+</button>
+    
     <script>
       document.getElementById("search-form").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -433,19 +438,18 @@ result.innerHTML = table;
 }
 
       function copyToClipboard(text, btn) {
+  if (btn.disabled) return;
+  btn.disabled = true;
   navigator.clipboard.writeText(text).then(() => {
     const original = btn.innerHTML;
-
-    // Ganti jadi ✅ dan tambahkan animasi
     btn.innerHTML = "✅";
     btn.style.backgroundColor = "#28a745";
     btn.classList.add("fade-in-success");
-
-    // Kembalikan setelah 2 detik
     setTimeout(() => {
       btn.innerHTML = original;
       btn.style.backgroundColor = "";
       btn.classList.remove("fade-in-success");
+      btn.disabled = false;
     }, 2000);
   });
 }
@@ -546,5 +550,32 @@ function denyPush() {
   <span id="custom-alert-message"></span>
 </div>
     <audio id="alertSound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
+<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Cegah prompt otomatis
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Tampilkan tombol download
+    installBtn.style.display = 'inline-block';
+
+    installBtn.addEventListener('click', async () => {
+      installBtn.disabled = true;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        console.log("✅ User accepted PWA install");
+      } else {
+        console.log("❌ User dismissed PWA install");
+      }
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    });
+  });
+</script>
+    
   </body>
 </html>
