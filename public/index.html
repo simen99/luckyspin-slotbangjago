@@ -382,20 +382,21 @@
 <style>
 .close-popup-btn {
   position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 38px;
-  height: 38px;
+  top: -16px;
+  right: -16px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: red;
   color: white;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 20px;
+  line-height: 36px; /* ⬅️ untuk vertikal centering */
+  text-align: center;
   border: none;
   cursor: pointer;
   z-index: 100;
-  animation: pulseX 1.5s infinite;
-  box-shadow: 0 0 0 5px rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.4);
 }
 @keyframes pulseX {
   0%   { transform: scale(1); box-shadow: 0 0 0 5px rgba(255, 0, 0, 0.4); }
@@ -411,20 +412,12 @@
   display: inline-block;
   margin: 0 6px;
   cursor: pointer;
-  animation: pulseDot 2s infinite ease-in-out;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
-
-@keyframes pulseDot {
-  0%   { transform: scale(1);   opacity: 0.7; }
-  50%  { transform: scale(1.3); opacity: 1;   }
-  100% { transform: scale(1);   opacity: 0.7; }
-}
-
 .dot.active {
-  background-color: #333;
-  animation: none;
-  box-shadow: 0 0 6px #333;
+  background-color: #444;
+  transform: scale(1.3);
+  box-shadow: 0 0 6px #00000088;
 }
 </style>
 <script>
