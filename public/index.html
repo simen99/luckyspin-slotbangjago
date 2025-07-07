@@ -353,7 +353,82 @@
   </div>
 </form>
     <div id="result"></div>
-    
+    <div id="popupSlider" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.7); z-index: 99998; justify-content: center; align-items: center;">
+  <div style="position: relative; background: white; max-width: 700px; width: 90%; border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.4);">
+    <!-- Tombol X -->
+    <button onclick="closeSlider()" style="position: absolute; top: -15px; right: -15px; background: red; color: white; border: none; border-radius: 50%; width: 32px; height: 32px; font-weight: bold; font-size: 18px; cursor: pointer; z-index: 2;">&times;</button>
+    <!-- Gambar Carousel -->
+    <div id="sliderImages">
+      <img src="https://i.ibb.co/XJKczMT/c6bde16a-623a-4114-b808-995f229d4a1f.png" style="width: 100%; display: block;" />
+      <img src="https://i.ibb.co/Y8pJ3fZ/slide2.png" style="width: 100%; display: none;" />
+      <img src="https://i.ibb.co/SNXY2mn/slide3.png" style="width: 100%; display: none;" />
+    </div>
+    <!-- Titik Navigasi -->
+    <div style="display: flex; justify-content: center; margin: 10px 0; gap: 8px;">
+      <span class="dot" onclick="showSlide(0)"></span>
+      <span class="dot" onclick="showSlide(1)"></span>
+      <span class="dot" onclick="showSlide(2)"></span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  .dot.active {
+    background-color: #333;
+  }
+</style>
+
+<script>
+  let currentSlide = 0;
+  let slideInterval;
+
+  function showSlide(index) {
+    const slides = document.querySelectorAll('#sliderImages img');
+    const dots = document.querySelectorAll('.dot');
+
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'block' : 'none';
+      dots[i].classList.toggle('active', i === index);
+    });
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    const total = document.querySelectorAll('#sliderImages img').length;
+    currentSlide = (currentSlide + 1) % total;
+    showSlide(currentSlide);
+  }
+
+  function startAutoSlide() {
+    slideInterval = setInterval(nextSlide, 6000);
+  }
+
+  function openSlider() {
+    document.getElementById('popupSlider').style.display = 'flex';
+    showSlide(0);
+    startAutoSlide();
+  }
+
+  function closeSlider() {
+    document.getElementById('popupSlider').style.display = 'none';
+    clearInterval(slideInterval);
+  }
+
+  // Tampilkan saat halaman selesai load (bisa dimodifikasi jadi hanya tampil 1x/hari jika mau)
+  window.addEventListener('load', () => {
+    setTimeout(openSlider, 1000);
+  });
+</script>
+
     <script>
       document.getElementById("search-form").addEventListener("submit", function (e) {
   e.preventDefault();
