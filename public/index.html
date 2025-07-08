@@ -68,7 +68,14 @@
   from { box-shadow: 0 0 6px #28a745; }
   to   { box-shadow: 0 0 12px #28a745; }
 }
-     
+  .pop-in {
+    animation: popIn 0.4s ease;
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+      
       button {
         padding: 10px 20px;
         background-color: #28a745;
@@ -729,15 +736,9 @@ function denyPush() {
   installBtn.style.display = 'inline-block';
 
   // Tombol tetap bisa di-klik, walau prompt belum tersedia
-  installBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    } else {
-      alert("Note  : Gunakan browser seperti Chrome agar apk lancar. Mohon klik sekali lagi button download apk");
-    }
-  });
+  installBtn.addEventListener('click', () => {
+  window.location.href = "https://luckyspin-slotbangjago.vercel.app/SlotBangJago.apk";
+});
 
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
