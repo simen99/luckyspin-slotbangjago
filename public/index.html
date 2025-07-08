@@ -736,8 +736,14 @@ function denyPush() {
   installBtn.style.display = 'inline-block';
 
   // Tombol tetap bisa di-klik, walau prompt belum tersedia
-  installBtn.addEventListener('click', () => {
-  window.location.href = "https://luckyspin-slotbangjago.vercel.app/SlotBangJago.apk";
+  installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  } else {
+    alert("Note  : Gunakan browser seperti Chrome agar apk lancar. Mohon klik sekali lagi button download apk");
+  }
 });
 
   window.addEventListener('beforeinstallprompt', (e) => {
