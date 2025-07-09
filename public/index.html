@@ -545,7 +545,7 @@ const result = document.getElementById("result");
 response.forEach(row => {
   const tanggal = new Date(row[2]);
   const expiredDate = new Date(tanggal);
-  expiredDate.setDate(tanggal.getDate() + 3);
+  expiredDate.setDate(tanggal.getDate() + 2);
 
   const options = { day: 'numeric', month: 'short', year: 'numeric' };
   const expText = expiredDate.toLocaleDateString('id-ID', options);
