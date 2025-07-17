@@ -378,20 +378,15 @@
         <img src="https://i.ibb.co/Y4yjrzcR/slotbangjago-popup-bonus-deposit-vip-20253458163458.jpg" style="width: 100%; height: 100%; object-fit: cover; display: none;" />
         <img src="https://i.ibb.co/7tmxngCt/slotbangjago-popup-all-promo6-20251320191320.jpg" style="width: 100%; height: 100%; object-fit: cover; display: none;" />
       </div>
-    <!-- Tombol Tutup di dalam box -->
-  <div style="padding: 10px; text-align: center;">
-    <button onclick="closeSlider()" style="padding: 8px 20px; background-color: #cc0000; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
-      Tutup
-    </button>
-  </div>
-</div>
     </div>
 
-    <!-- Dot navigasi saja -->
-<div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center;">
+    <!-- Dot navigasi -->
+<div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 10;">
   <span class="dot" onclick="showSlide(0)"></span>
   <span class="dot" onclick="showSlide(1)"></span>
   <span class="dot" onclick="showSlide(2)"></span>
+</div>
+  </div>
 </div>
     
    <style>
@@ -524,7 +519,7 @@ const result = document.getElementById("result");
   searchBtn.style.cursor = "not-allowed";
   searchBtn.style.pointerEvents = "none";
 
-  fetch(`https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)}`)
+  fetch(https://script.google.com/macros/s/AKfycbz5YrlZfupDk9x6Fxe-yu6sJJ_a6H7SoRQ7A0WNFuPo-Zk9XjYYdvZLmcu4z8MzIn-b/exec?searchtext=${encodeURIComponent(input)})
     .then(response => response.json())
     .then(response => {
       spinner.classList.remove("active");
@@ -537,7 +532,7 @@ const result = document.getElementById("result");
 
       if (response && response.length > 0) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        let table = `<table class="result-table"><thead><tr>
+        let table = <table class="result-table"><thead><tr>
 <th>USERNAME</th>
 <th>
   KODE LUCKYSPIN
@@ -546,7 +541,7 @@ const result = document.getElementById("result");
   </div>
 </th>
 <th>TANGGAL</th>
-</tr></thead><tbody>`;
+</tr></thead><tbody>;
 response.forEach(row => {
   const tanggal = new Date(row[2]);
   const expiredDate = new Date(tanggal);
@@ -555,7 +550,7 @@ response.forEach(row => {
   const options = { day: 'numeric', month: 'short', year: 'numeric' };
   const expText = expiredDate.toLocaleDateString('id-ID', options);
 
-  table += `<tr>
+  table += <tr>
   <td style="text-align:center;">${row[0]}</td>
   <td style="text-align:center;">
     <div>
@@ -571,25 +566,25 @@ response.forEach(row => {
       Kupon Hangus : ${expText}
     </div>
   </td>
-</tr>`;
+</tr>;
 });
-table += `</tbody></table>`;
-table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
-table += `<div style="margin-top: 10px;">
+table += </tbody></table>;
+table += <div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>;
+table += <div style="margin-top: 10px;">
   <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
     <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
   </a>
-</div>`;
+</div>;
 result.innerHTML = table;
       } else {
-        result.innerHTML = `
+        result.innerHTML = 
   <div class="reminder-text" style="color:red;margin-top:10px;">
     ❌ Pastikan Userid anda sudah benar & Memenuhi Syarat.
   </div>
   <a href="https://klikblg.com/wa-sbj" target="_blank">
     <button class="wa-btn">KLIK INI ! HUBUNGI WA OFFICIAL KAMI</button>
   </a>
-`;
+;
       }
     })
     .catch(() => {
@@ -597,7 +592,7 @@ result.innerHTML = table;
       searchBtn.disabled = false;
       searchBtn.style.opacity = 1;
       searchBtn.style.cursor = "pointer";
-      result.innerHTML = `<div style='color:red;'>❌ Gagal terhubung ke server.</div>`;
+      result.innerHTML = <div style='color:red;'>❌ Gagal terhubung ke server.</div>;
     });
 });
 
