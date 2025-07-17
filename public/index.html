@@ -386,7 +386,21 @@
   <span class="dot" onclick="showSlide(1)"></span>
   <span class="dot" onclick="showSlide(2)"></span>
 </div>
-  </div>
+
+    <!-- Tombol tutup bawah (lebih rapi & dalam box putih) -->
+<div style="position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 11;">
+  <button onclick="closeSlider()" style="
+    padding: 6px 20px;
+    background-color: #cc0000;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  ">Tutup</button>
 </div>
     
    <style>
