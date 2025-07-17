@@ -532,7 +532,7 @@ const result = document.getElementById("result");
 
       if (response && response.length > 0) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        let table = <table class="result-table"><thead><tr>
+        let table = `<table class="result-table"><thead><tr>
 <th>USERNAME</th>
 <th>
   KODE LUCKYSPIN
@@ -541,7 +541,7 @@ const result = document.getElementById("result");
   </div>
 </th>
 <th>TANGGAL</th>
-</tr></thead><tbody>;
+</tr></thead><tbody>`;
 response.forEach(row => {
   const tanggal = new Date(row[2]);
   const expiredDate = new Date(tanggal);
@@ -550,7 +550,7 @@ response.forEach(row => {
   const options = { day: 'numeric', month: 'short', year: 'numeric' };
   const expText = expiredDate.toLocaleDateString('id-ID', options);
 
-  table += <tr>
+  table += `<tr>
   <td style="text-align:center;">${row[0]}</td>
   <td style="text-align:center;">
     <div>
@@ -566,25 +566,25 @@ response.forEach(row => {
       Kupon Hangus : ${expText}
     </div>
   </td>
-</tr>;
+</tr>`;
 });
-table += </tbody></table>;
-table += <div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>;
-table += <div style="margin-top: 10px;">
+table += `</tbody></table>`;
+table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
+table += `<div style="margin-top: 10px;">
   <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
     <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
   </a>
-</div>;
+</div>`;
 result.innerHTML = table;
       } else {
-        result.innerHTML = 
+        result.innerHTML = `
   <div class="reminder-text" style="color:red;margin-top:10px;">
     ❌ Pastikan Userid anda sudah benar & Memenuhi Syarat.
   </div>
   <a href="https://klikblg.com/wa-sbj" target="_blank">
     <button class="wa-btn">KLIK INI ! HUBUNGI WA OFFICIAL KAMI</button>
   </a>
-;
+`;
       }
     })
     .catch(() => {
@@ -592,7 +592,7 @@ result.innerHTML = table;
       searchBtn.disabled = false;
       searchBtn.style.opacity = 1;
       searchBtn.style.cursor = "pointer";
-      result.innerHTML = <div style='color:red;'>❌ Gagal terhubung ke server.</div>;
+      result.innerHTML = `<div style='color:red;'>❌ Gagal terhubung ke server.</div>`;
     });
 });
 
