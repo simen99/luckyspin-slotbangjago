@@ -380,13 +380,16 @@
       </div>
     </div>
 
-    <!-- Dot navigasi -->
-<div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 10;">
-  <span class="dot" onclick="showSlide(0)"></span>
-  <span class="dot" onclick="showSlide(1)"></span>
-  <span class="dot" onclick="showSlide(2)"></span>
-</div>
+    <!-- Dot navigasi dan tombol tutup -->
+<div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center;">
+  <div style="margin-bottom: 10px;">
+    <span class="dot" onclick="showSlide(0)"></span>
+    <span class="dot" onclick="showSlide(1)"></span>
+    <span class="dot" onclick="showSlide(2)"></span>
   </div>
+  <button onclick="closeSlider()" style="margin-top: 6px; padding: 6px 16px; background-color: #cc0000; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+    Tutup
+  </button>
 </div>
     
    <style>
