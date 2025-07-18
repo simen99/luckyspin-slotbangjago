@@ -700,14 +700,20 @@ result.innerHTML = table;
 });
     </script>
 
-    <!-- Tombol GIF Telegram -->
-    <a href="https://klikblg.com/tele-sbj" target="_blank" style="position: fixed; bottom: 90px; left: 20px; z-index: 9999;">
-      <img src="https://i.ibb.co/qFNF754C/s-Wrh-ESzm4-Oh-UZql-Jg-Mvcz-c-Vr-Hw.gif" alt="Telegram GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
-    </a>
-    <!-- Tombol GIF WhatsApp -->
-    <a href="https://klikblg.com/wa-sbj" target="_blank" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999;">
-      <img src="https://i.ibb.co/mrvRcXRH/Wqtl0ij-Kix.gif" alt="WhatsApp GIF" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
-    </a>
+    <!-- Telegram -->
+<a href="https://klikblg.com/tele-sbj" target="_blank"
+   style="position: fixed; bottom: 130px; left: 20px; z-index: 100000;">
+  <img src="https://i.ibb.co/qFNF754C/s-Wrh-ESzm4-Oh-UZql-Jg-Mvcz-c-Vr-Hw.gif"
+       alt="Telegram GIF"
+       style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
+</a>
+    <!-- WhatsApp -->
+<a href="https://klikblg.com/wa-sbj" target="_blank"
+   style="position: fixed; bottom: 60px; left: 20px; z-index: 100000;">
+  <img src="https://i.ibb.co/mrvRcXRH/Wqtl0ij-Kix.gif"
+       alt="WhatsApp GIF"
+       style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;" />
+</a>
     <!-- Custom OneSignal Prompt -->
 <div id="custom-prompt" class="notif-popup">
   <p style="margin:0 0 8px 0;font-size:14px;">
@@ -771,10 +777,12 @@ function denyPush() {
 <style>
 img[alt="Telegram GIF"],
 img[alt="WhatsApp GIF"] {
+  position: fixed !important;
   will-change: transform;
   transform: translateZ(0);
-  position: fixed !important;
   z-index: 100000 !important;
+  pointer-events: auto !important;
+  display: block !important;
 }
 </style>
     
