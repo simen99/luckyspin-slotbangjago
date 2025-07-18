@@ -380,7 +380,9 @@
 <div id="popupSlider" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.7); z-index: 99998; justify-content: center; align-items: center;">
   <div style="position: relative; width: 600px; border-radius: 12px; overflow: visible;"> <!-- ubah overflow: visible -->
 
-    <!-- Tombol ❌ di luar pojok popup -->
+    <!-- Tombol ❌ di pojok kanan atas -->
+<button onclick="closeSlider()" class="close-popup-btn">✖</button>
+    
     <button onclick="closeSlider()" style="
   padding: 6px 20px;
   background-color: #cc0000;
@@ -392,9 +394,9 @@
   font-size: 14px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.3);
   transition: transform 0.2s ease, background-color 0.3s ease;
-  animation: pulse 1.8s infinite;
+  animation: pulseX 1.8s infinite;
 ">Tutup</button>
-
+    
     <!-- Wrapper gambar + border -->
     <div style="width: 600px; height: 344px; background: white; border: 6px solid white; border-radius: 12px; overflow: hidden; box-shadow: 0 0 24px rgba(0,0,0,0.4);">
       <!-- Gambar Carousel -->
