@@ -323,6 +323,32 @@
   transition: transform 0.2s ease, background-color 0.3s ease;
   animation: pulseX 1.8s infinite;
 }
+.login-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.login-btn {
+  background-color: #cc0000;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s, transform 0.2s;
+  animation: pulseX 1.8s infinite;
+}
+
+.login-btn:hover {
+  background-color: #28a745;
+  transform: scale(1.05);
+}
 
 .close-popup-bottom-btn:hover {
   background-color: #28a745;
@@ -377,6 +403,14 @@
     <button id="installBtn" type="button" class="cari-btn" style="display: none; line-height: 1.3; text-align: center;">
   DOWNLOAD<br>APK CARI KODE
 </button>
+
+    <!-- Tambahkan di sini -->
+<div class="login-links">
+  <a href="https://slotbangjago9.com" target="_blank" class="login-btn">LOGIN 1</a>
+  <a href="https://slotbangjago10.com" target="_blank" class="login-btn">LOGIN 2</a>
+  <a href="https://slotbangjagomax8.com" target="_blank" class="login-btn">LOGIN 3</a>
+  <a href="https://slotbangjagomax9.com" target="_blank" class="login-btn">LOGIN 4</a>
+</div>
     <div id="loading-spinner" class="spinner-wrapper">
       <div class="spinner"></div>
     </div>
