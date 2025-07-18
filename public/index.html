@@ -332,6 +332,8 @@
 }
 
 .login-btn {
+  position: relative;
+  overflow: hidden;
   background-color: #cc0000;
   color: white;
   padding: 10px 20px;
@@ -342,17 +344,23 @@
   text-decoration: none;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: background-color 0.3s, transform 0.2s;
-  animation: pulseX 1.8s infinite;
 }
 
-.login-btn:hover {
-  background-color: #28a745;
-  transform: scale(1.05);
+.login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+  transform: skewX(-20deg);
+  animation: shine 2.5s infinite;
 }
 
-.login-btn {
-  min-width: 100px;
-  text-align: center;
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
 }
       
 .login-links {
