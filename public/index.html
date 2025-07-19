@@ -954,7 +954,7 @@ function updateUserCount() {
 
     if (count !== prevCount) {
       countEl.textContent = count;
-      dotEl.textContent = count > 0 ? "🟢" : "🔴";
+      dotEl.textContent = "";
       dotEl.className = count > 0 ? "status-live" : "status-off";
       prevCount = count;
     }
