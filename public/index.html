@@ -420,6 +420,26 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.status-live {
+  animation: pulseGreen 1.5s infinite;
+}
+
+.status-off {
+  animation: pulseRed 1.5s infinite;
+}
+
+@keyframes pulseGreen {
+  0%   { text-shadow: 0 0 0px #4CAF50; transform: scale(1); }
+  50%  { text-shadow: 0 0 6px #4CAF50; transform: scale(1.08); }
+  100% { text-shadow: 0 0 0px #4CAF50; transform: scale(1); }
+}
+
+@keyframes pulseRed {
+  0%   { text-shadow: 0 0 0px #f44336; transform: scale(1); }
+  50%  { text-shadow: 0 0 6px #f44336; transform: scale(1.08); }
+  100% { text-shadow: 0 0 0px #f44336; transform: scale(1); }
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
@@ -468,7 +488,7 @@
   box-shadow: 0 0 8px rgba(0,0,0,0.3);
   z-index: 99999;
   font-family: Arial, sans-serif;">
-  Online Player : <span id="activeUsers">0</span>
+  Online Player : <span id="statusDot">🟢</span> Online Player: <span id="activeUsers">0</span>
 </div>
 <div class="login-links">
   <a href="https://slotbangjago9.com" target="_blank" class="login-btn">LINK VIP 1</a>
@@ -904,18 +924,28 @@ img[alt="WhatsApp GIF"] {
     }, 300);
   });
 
-  function updateUserCount() {
-    const now = Date.now();
-    db.ref('active_users').once('value', snap => {
-      let count = 0;
-      snap.forEach(child => {
-        if (now - child.val() < 2 * 60 * 1000) count++;
-      });
-      document.getElementById("userCount").innerText = `Online Player : ${count}`;
+  let prevCount = 0;
+function updateUserCount() {
+  const now = Date.now();
+  db.ref('active_users').once('value', snap => {
+    let count = 0;
+    snap.forEach(child => {
+      if (now - child.val() < 2 * 60 * 1000) count++;
     });
-  }
 
-  setInterval(updateUserCount, 5000);
+    const countEl = document.getElementById("activeUsers");
+    const dotEl = document.getElementById("statusDot");
+
+    if (count !== prevCount) {
+      countEl.textContent = count;
+      dotEl.textContent = count > 0 ? "🟢" : "🔴";
+      dotEl.className = count > 0 ? "status-live" : "status-off";
+      prevCount = count;
+    }
+  });
+}
+
+setInterval(updateUserCount, 5000);
 </script>
 </body>
 </html>
