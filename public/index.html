@@ -857,6 +857,57 @@ img[alt="WhatsApp GIF"] {
   display: block !important;
 }
 </style>
-    
+<!-- 👥 Statistik Pengunjung Aktif -->
+<div id="userCount" style="
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  z-index: 99999;
+  font-family: Arial, sans-serif;">
+  👥 Pengunjung aktif: ...
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDBl94RkbBiwG9vdqljIdN9HZIHRYYOxYk",
+    authDomain: "sbj-livestatus.firebaseapp.com",
+    databaseURL: "https://sbj-livestatus-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "sbj-livestatus",
+    storageBucket: "sbj-livestatus.firebasestorage.app",
+    messagingSenderId: "606616874855",
+    appId: "1:606616874855:web:5d32671506c77788c6c9c2"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  const uid = 'user_' + Math.random().toString(36).substring(2);
+  const ref = db.ref('active_users/' + uid);
+  ref.set(Date.now());
+  ref.onDisconnect().remove();
+
+  function updateUserCount() {
+    const now = Date.now();
+    db.ref('active_users').once('value', snap => {
+      let count = 0;
+      snap.forEach(child => {
+        if (now - child.val() < 2 * 60 * 1000) count++;
+      });
+      document.getElementById("userCount").innerText = `👥 Pengunjung aktif: ${count}`;
+    });
+  }
+
+  setInterval(updateUserCount, 5000);
+</script>
 </body>
 </html>
