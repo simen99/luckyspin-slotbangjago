@@ -888,10 +888,21 @@ img[alt="WhatsApp GIF"] {
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
-  const uid = 'user_' + Math.random().toString(36).substring(2);
-  const ref = db.ref('active_users/' + uid);
-  ref.set(Date.now());
-  ref.onDisconnect().remove();
+  // ✅ Jadikan global supaya bisa testing/debug lebih mudah
+  let uidRef = null;
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const uid = 'user_' + Math.random().toString(36).substring(2);
+    uidRef = firebase.database().ref('active_users/' + uid);
+    
+    // ⏳ Delay 300ms agar support Mobile Load
+    setTimeout(() => {
+      uidRef.set(Date.now()).then(() => {
+        console.log("📲 Pengunjung tercatat (termasuk HP)");
+      });
+      uidRef.onDisconnect().remove();
+    }, 300);
+  });
 
   function updateUserCount() {
     const now = Date.now();
