@@ -436,17 +436,17 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 4px;
+  margin-top: 10px;
 }
 
 .running-text-wrapper {
-  max-width: calc(100vw - 32px);
+  max-width: 720px;         /* ⚠️ Batasi agar segaris dengan "MASUKKAN..." */
   width: 100%;
   overflow: hidden;
-  height: 28px;
-  background: transparent;
-  padding: 0 16px; /* ⬅️ ini bikin batas kiri-kanan rapi */
+  position: relative;
+  padding: 0 16px;
   box-sizing: border-box;
+  height: 30px;
 }
 
 .running-text-content {
@@ -1008,31 +1008,29 @@ setInterval(updateUserCount, 5000);
 
 <script>
   function startMarquee() {
-  const el = document.getElementById("runningText");
-  const wrapper = document.querySelector(".running-text-wrapper");
+    const el = document.getElementById("runningText");
+    const wrapper = document.querySelector(".running-text-wrapper");
 
-  if (!el || !wrapper) return;
+    if (!el || !wrapper) return;
 
-  const textWidth = el.offsetWidth;
-  const wrapperWidth = wrapper.offsetWidth;
-  const totalDistance = textWidth + wrapperWidth;
+    const textWidth = el.offsetWidth;
+    const wrapperWidth = wrapper.offsetWidth;
+    const totalDistance = textWidth + wrapperWidth;
+    const speed = 60; // pixel per detik
+    const duration = totalDistance / speed;
 
-  const speed = 60;
-  const duration = totalDistance / speed;
+    el.animate([
+      { transform: `translateX(${wrapperWidth}px)` },
+      { transform: `translateX(-${textWidth}px)` },
+      { transform: `translateX(-${textWidth}px)` }
+    ], {
+      duration: (duration + 2) * 1000,
+      iterations: Infinity,
+      easing: "linear"
+    });
+  }
 
-  el.animate([
-    { transform: `translateX(${wrapperWidth}px)` },
-    { transform: `translateX(-${textWidth}px)` },
-    { transform: `translateX(-${textWidth}px)` }
-  ], {
-    duration: (duration + 2) * 1000,
-    iterations: Infinity,
-    easing: "linear"
-  });
-}
-
-// ⬅️ Tambahkan ini di LUAR fungsi (bukan di dalam!)
-window.addEventListener("load", startMarquee);
+  window.addEventListener("load", startMarquee);
 </script>
 </body>
 </html>
