@@ -456,8 +456,9 @@
   font-weight: bold;
   color: #cc0000;
   will-change: transform;
+  animation: marqueeText 18s linear infinite; /* ✅ tambahkan baris ini */
 }
-      
+
 @keyframes marqueeText {
   0%   { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
