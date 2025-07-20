@@ -440,22 +440,24 @@
 }
 
 .running-text-wrapper {
-  width: 720px; /* BATAS MAKSIMAL agar selaras dengan heading */
-  max-width: 95%;
+  max-width: calc(100vw - 32px);
+  width: 100%;
   overflow: hidden;
   height: 28px;
-  background: #ffffff00; /* transparan atau bisa diberi latar */
+  background: transparent;
+  padding: 0 16px; /* ⬅️ ini bikin batas kiri-kanan rapi */
+  box-sizing: border-box;
 }
 
 .running-text-content {
   display: inline-block;
   white-space: nowrap;
-  animation: marqueeText 14s linear infinite;
   font-size: 16.5px;
   font-weight: bold;
   color: #cc0000;
+  will-change: transform;
 }
-
+      
 @keyframes marqueeText {
   0%   { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
@@ -495,12 +497,12 @@
     <h2 style="animation: fadeIn 1.2s ease;">MASUKKAN USER ID UNTUK LIHAT KODE LUCKYSPIN ANDA !</h2>
 <div class="running-text-container">
   <div class="running-text-wrapper">
-    <div class="running-text-content">
+    <div class="running-text-content" id="runningText">
       🎁 DISTRIBUSI KUPON SETIAP HARI DIMULAI PUKUL 04:00 SUBUH 🎁
     </div>
   </div>
 </div>
-
+    
     <form id="search-form">
   <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
   <div style="display: flex; align-items: center; gap: 8px;">
@@ -1002,6 +1004,35 @@ function updateUserCount() {
 }
 
 setInterval(updateUserCount, 5000);
+</script>
+
+<script>
+  function startMarquee() {
+  const el = document.getElementById("runningText");
+  const wrapper = document.querySelector(".running-text-wrapper");
+
+  if (!el || !wrapper) return;
+
+  const textWidth = el.offsetWidth;
+  const wrapperWidth = wrapper.offsetWidth;
+  const totalDistance = textWidth + wrapperWidth;
+
+  const speed = 60;
+  const duration = totalDistance / speed;
+
+  el.animate([
+    { transform: `translateX(${wrapperWidth}px)` },
+    { transform: `translateX(-${textWidth}px)` },
+    { transform: `translateX(-${textWidth}px)` }
+  ], {
+    duration: (duration + 2) * 1000,
+    iterations: Infinity,
+    easing: "linear"
+  });
+}
+
+// ⬅️ Tambahkan ini di LUAR fungsi (bukan di dalam!)
+window.addEventListener("load", startMarquee);
 </script>
 </body>
 </html>
