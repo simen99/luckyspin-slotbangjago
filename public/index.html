@@ -1016,15 +1016,15 @@ setInterval(updateUserCount, 5000);
     const textWidth = el.offsetWidth;
     const wrapperWidth = wrapper.offsetWidth;
     const totalDistance = textWidth + wrapperWidth;
+
     const speed = 60; // pixel per detik
     const duration = totalDistance / speed;
 
     el.animate([
       { transform: `translateX(${wrapperWidth}px)` },
-      { transform: `translateX(-${textWidth}px)` },
       { transform: `translateX(-${textWidth}px)` }
     ], {
-      duration: (duration + 2) * 1000,
+      duration: duration * 1000, // ⬅️ Tanpa +2, biar tidak delay
       iterations: Infinity,
       easing: "linear"
     });
