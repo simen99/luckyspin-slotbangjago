@@ -458,9 +458,35 @@
   <body>
     <img src="https://i.ibb.co/8LjX3z3Y/logo-sbj-png.png" alt="Logo Slot Bangjago" style="height: 80px; margin-bottom: 10px; animation: fadeIn 1s ease;" />
     <h2 style="animation: fadeIn 1.2s ease;">MASUKKAN USER ID UNTUK LIHAT KODE LUCKYSPIN ANDA !</h2>
-<p style="font-size: 17px; color: #000; margin-top: 4px; font-weight: bold; animation: fadeIn 1.4s ease;">
-  DISTRIBUSI KUPON SETIAP HARI DIMULAI PUKUL 04:00 SUBUH
-</p>
+<div class="running-text-wrapper">
+  <div class="running-text-content">
+    🎁 DISTRIBUSI KUPON SETIAP HARI DIMULAI PUKUL 04:00 SUBUH 🎁
+  </div>
+</div>
+
+<style>
+.running-text-wrapper {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 6px;
+  height: 28px;
+}
+
+.running-text-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marqueeText 14s linear infinite;
+  font-size: 17px;
+  font-weight: bold;
+  color: #cc0000;
+}
+
+@keyframes marqueeText {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+</style>
+    
     <form id="search-form">
   <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
   <div style="display: flex; align-items: center; gap: 8px;">
