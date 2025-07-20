@@ -468,7 +468,44 @@
   margin: 0 auto;
   padding: 0 10px;
 }
-      
+
+.pengumuman-box {
+  max-width: 720px;
+  width: 100%;
+  margin: 15px auto 0;
+  background: #fff;
+  border: 2px solid #f00;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  gap: 10px;
+  font-family: sans-serif;
+}
+
+.pengumuman-label {
+  font-weight: bold;
+  color: #d10000;
+  white-space: nowrap;
+}
+
+.running-text-wrapper {
+  overflow: hidden;
+  flex: 1;
+  height: 26px;
+  position: relative;
+}
+
+.running-text-content {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: bold;
+  color: #cc0000;
+  will-change: transform;
+}
+
 .status-live {
   animation: glowGreen 1.4s ease-in-out infinite;
 }
@@ -495,7 +532,8 @@
   <body>
     <img src="https://i.ibb.co/8LjX3z3Y/logo-sbj-png.png" alt="Logo Slot Bangjago" style="height: 80px; margin-bottom: 10px; animation: fadeIn 1s ease;" />
     <h2 style="animation: fadeIn 1.2s ease;">MASUKKAN USER ID UNTUK LIHAT KODE LUCKYSPIN ANDA !</h2>
-<div class="running-text-container">
+<div class="pengumuman-box">
+  <span class="pengumuman-label">📢 PENGUMUMAN :</span>
   <div class="running-text-wrapper">
     <div class="running-text-content" id="runningText">
       🎁 DISTRIBUSI KUPON SETIAP HARI DIMULAI PUKUL 04:00 SUBUH 🎁
