@@ -332,24 +332,20 @@
 }
 
 .login-btn {
-  position: relative;
-  overflow: hidden;
   background-color: #cc0000;
   color: white;
-  padding: 6px 14px;           /* Tambah sedikit padding horizontal */
+  padding: 6px 10px;          /* Lebar tombol lebih ramping */
+  font-size: 11px;            /* Ukuran font disesuaikan */
   font-weight: bold;
-  font-size: 11.5px;           /* Lebih kecil biar muat */
   border: none;
   border-radius: 6px;
   text-decoration: none;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.25s ease, background-color 0.3s ease;
-
-  width: 120px;                /* Samakan dengan tombol hijau */
   display: block;
   text-align: center;
-  margin-bottom: 6px;          /* Jarak antar tombol vertikal */
-}
+  width: 100px;               /* ← PAS dan tidak melebar */
+  margin-bottom: 6px;
+  transition: transform 0.25s ease, background-color 0.3s ease;
       
 .login-btn:hover {
   background-color: #28a745;
