@@ -336,22 +336,16 @@
   overflow: hidden;
   background-color: #cc0000;
   color: white;
-  padding: 9px 12px;              /* Ukuran lebih kecil */
+  padding: 10px 20px;
   font-weight: bold;
-  font-size: 13px;                /* Sedikit lebih kecil */
+  font-size: 14px;
   border: none;
   border-radius: 6px;
   text-decoration: none;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: transform 0.25s ease, background-color 0.3s ease;
-  
-  max-width: 105px;               /* Sesuaikan dengan lebar tombol hijau */
-  width: 100%;
-  text-align: center;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
-      
+
 .login-btn:hover {
   background-color: #28a745;
   transform: scale(1.06); /* Lebih realistis */
@@ -387,22 +381,6 @@
   gap: 10px;
   margin-top: 12px;
   margin-bottom: 8px;
-}
-      
-.login-btn.vip {
-  padding: 10px 20px;
-  font-size: 14px;
-  height: 42px;
-  max-width: 160px;
-  background-color: #cc0000;
-  line-height: 1.3;
-}
-      
-.red-btn {
-  background-color: #cc0000 !important;
-}
-.red-btn:hover {
-  background-color: #a80000 !important;
 }
 
 .close-popup-bottom-btn:hover {
@@ -566,26 +544,14 @@
     <form id="search-form">
   <input type="text" id="searchtext" name="searchtext" placeholder="Masukkan User ID" required />
   <div style="display: flex; align-items: center; gap: 8px;">
-  <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
-
-  <button id="installBtn" type="button" class="cari-btn" style="
-    line-height: 1.3;
-    text-align: center;
-    padding: 10px 12px;
-    max-width: 150px;
-  ">
-    DOWNLOAD<br>APK CARI KODE
-  </button>
-
-  <a href="https://slotbangjago9.com" target="_blank" class="cari-btn red-btn">
-  LINK VIP 1
-</a>
-</div>
+    <button type="submit" id="searchBtn" class="cari-btn">Cari</button>
+    <button id="installBtn" type="button" class="cari-btn" style="display: none; line-height: 1.3; text-align: center;">
+  DOWNLOAD<br>APK CARI KODE
+</button>
     <div id="loading-spinner" class="spinner-wrapper">
       <div class="spinner"></div>
     </div>
   </div>
-      
       <!-- Telegram -->
 <a href="https://klikblg.com/tele-sbj" target="_blank" style="position: fixed; bottom: 180px; left: 20px; z-index: 100000;">
   <img src="https://i.ibb.co/tMf82kDb/telegram-gif.gif"
@@ -620,6 +586,12 @@
   <span style="margin-left: 8px;">Online Player : <span id="activeUsers">0</span></span>
 </div>
     
+<div class="login-links">
+  <a href="https://slotbangjago9.com" target="_blank" class="login-btn">LINK VIP 1</a>
+  <a href="https://slotbangjago10.com" target="_blank" class="login-btn">LINK VIP 2</a>
+  <a href="https://slotbangjagomax8.com" target="_blank" class="login-btn">LINK ALT 1</a>
+  <a href="https://slotbangjagomax9.com" target="_blank" class="login-btn">LINK ALT 2</a>
+</div>
     <div id="result"></div>
    <!-- Popup Slider -->
 <div id="popupSlider" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.7); z-index: 99998; justify-content: center; align-items: center;">
