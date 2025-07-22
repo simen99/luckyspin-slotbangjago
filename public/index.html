@@ -3,26 +3,31 @@
   <head>
     <title>SlotBangJago - Cari Kupon Luckyspin !</title>
     <style>
+/* Garis default disembunyikan di desktop */
 .garis-pembatas-mobile {
   display: none;
 }
 
+/* Tampilkan garis merah + ubah heading saat di HP */
 @media (max-width: 600px) {
-  img[alt="Logo Slot Bangjago"] {
-    height: 55px !important;
-    top: 12px !important;
-    left: 12px !important;
+  .garis-pembatas-mobile {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: red;
+    margin: 80px 0 10px 0;
+    border: none;
   }
+
   h2 {
     margin-top: 90px !important;
     font-size: 16px !important;
   }
-  .garis-pembatas-mobile {
-    display: block;
-    border: none;
-    height: 3px;
-    background-color: red;
-    margin: 80px 0 10px 0;
+
+  img[alt="Logo Slot Bangjago"] {
+    height: 55px !important;
+    top: 12px !important;
+    left: 12px !important;
   }
 }
       
@@ -560,7 +565,7 @@
   style="height: 72px; position: absolute; top: 8px; left: 8px; z-index: 9999; animation: fadeIn 1s ease;" />
 
     <!-- Garis merah hanya muncul di mobile -->
-    <hr class="garis-pembatas-mobile">
+    <div class="garis-pembatas-mobile"></div>
     
     <h2 style="margin-top: 90px;">MASUKKAN USER ID UNTUK LIHAT KODE LUCKYSPIN ANDA !</h2>
 <div class="pengumuman-box">
