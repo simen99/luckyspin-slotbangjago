@@ -525,136 +525,13 @@
   50%  { transform: scale(1.2); text-shadow: 0 0 6px #e60000; }
   100% { transform: scale(1);   text-shadow: 0 0 0px #e60000; }
 }
-      
-body {
-  margin-top: 10px !important;
-}
 
-img[alt="Logo Slot Bangjago"] {
-  margin-bottom: 4px !important;
-  height: 60px !important;
-  margin-top: 4px !important;
-}
-
-h2 {
-  margin: 6px 0 10px 0 !important;
-  font-size: 17px !important;
-}
-
-.pengumuman-box {
-  margin: 6px auto 10px auto !important;
-  padding: 4px 8px !important;
-  font-size: 13.5px !important;
-}
-
-.running-text-content {
-  font-size: 13.8px !important;
-}
-
-#search-form {
-  margin-bottom: 12px !important;
-  gap: 6px !important;
-  flex-wrap: wrap;
-}
-
-input[type="text"] {
-  padding: 8px !important;
-  font-size: 15px !important;
-  height: 40px !important;
-}
-
-button {
-  padding: 8px 16px !important;
-  font-size: 13.5px !important;
-}
-
-.login-links {
-  margin-top: 10px !important;
-  gap: 8px !important;
-}
-      
-#search-form input[type="text"],
-#search-form button {
-  height: 42px !important;
-  padding: 0 14px !important;
-  font-size: 14.5px !important;
-  border-radius: 8px !important;
-  box-sizing: border-box;
-}
-
-#search-form {
-  gap: 6px !important;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.judul-box {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.judul-box h2 {
-  font-size: 16px !important;
-  margin: 8px 0 6px 0 !important;
-  line-height: 1.4;
-} 
-
-.hasil-spin a {
-  padding: 5px 12px !important;
-  font-size: 13px !important;
-}
-
-.peringatan-spin {
-  margin: 4px 0 8px 0 !important;
-  font-size: 14.5px !important;
-  color: #d90000;
-  font-weight: bold;
-}
-
-.tombol-spin {
-  display: inline-block;
-  background-color: #28db69;
-  padding: 8px 16px !important;
-  font-size: 14px !important;
-  border-radius: 8px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-.hasil-spin {
-  margin-top: 6px !important;
-  padding: 8px 12px !important;
-  border: 2px solid red;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.hasil-spin p {
-  margin: 4px 0 6px 0 !important;
-  font-size: 14px !important;
-  line-height: 1.3;
-}
-
-.hasil-spin a {
-  display: inline-block;
-  background-color: #28db69;
-  padding: 6px 14px !important;
-  font-size: 13.5px !important;
-  border-radius: 8px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
   <body>
     <img src="https://i.ibb.co/8LjX3z3Y/logo-sbj-png.png" alt="Logo Slot Bangjago" style="height: 80px; margin-bottom: 10px; animation: fadeIn 1s ease;" />
-    <div class="judul-box">
-      <h2>MASUKKAN USER ID UNTUK LIHAT KODE LUCKYSPIN ANDA !</h2>
-      </div>
+    <h2 style="animation: fadeIn 1.2s ease;">MASUKKAN USER ID UNTUK LIHAT KODE LUCKYSPIN ANDA !</h2>
 <div class="pengumuman-box">
   <span class="pengumuman-label">📢 Pengumuman ! :</span>
   <div class="running-text-wrapper">
@@ -927,7 +804,7 @@ table += `</tbody></table>`;
 table += `<div class="reminder-text">JANGAN LUPA DI SPIN SEMUA YA BOS! HADIAH OTOMATIS MASUK 10 MENIT KEDEPAN</div>`;
 table += `<div style="margin-top: 10px;">
   <a href="https://klikblg.com/luckyspin-sbj" target="_blank">
-    <button class="hasil-spin">KLIK INI UNTUK MEMUTAR KODE</button>
+    <button class="spin-link-btn">KLIK INI UNTUK MEMUTAR KODE</button>
   </a>
 </div>`;
 result.innerHTML = table;
